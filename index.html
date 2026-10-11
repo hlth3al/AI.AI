@@ -258,23 +258,36 @@ $('copyResult').onclick=async()=>{let text=$('result').textContent;if(!text){sta
 $('saveText').onclick=()=>{if(!$('result').textContent){status('هنوز پاسخی برای ذخیره وجود ندارد. ابتدا تحلیل را بسازید.');return}let blob=new Blob(['\ufeff'+$('result').textContent],{type:'text/plain;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='AI.AI-answer.txt';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
 $('saveAudio').onclick=async()=>{let text=$('result').textContent;if(!text){status('هنوز پاسخی برای ذخیرهٔ صوتی وجود ندارد. ابتدا تحلیل را بسازید.');return}if(!navigator.mediaDevices?.getDisplayMedia||!window.MediaRecorder){status('ضبط مستقیم صدای برگه در این مرورگر در دسترس نیست؛ پاسخ با گفتار فارسی خوانده می‌شود. برای ذخیرهٔ فایل صوتی، مرورگر سازگار را به کار ببرید.');speak(text);return}try{status('در پنجرهٔ اشتراک‌گذاری، همین برگه و اشتراک‌گذاری صدای برگه را انتخاب کنید.');let stream=await navigator.mediaDevices.getDisplayMedia({video:true,audio:true});if(!stream.getAudioTracks().length){stream.getTracks().forEach(t=>t.stop());status('صدای برگه در اشتراک‌گذاری فعال نشد؛ دوباره تلاش کنید و اشتراک‌گذاری صدا را روشن کنید.',true);return}let chunks=[],mime=MediaRecorder.isTypeSupported('audio/webm;codecs=opus')?'audio/webm;codecs=opus':'audio/webm',rec=new MediaRecorder(stream,{mimeType:mime});rec.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};rec.onstop=()=>{if(chunks.length){let blob=new Blob(chunks,{type:mime}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='AI.AI-answer-audio.webm';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000);status('فایل صوتی پاسخ ذخیره شد.')}stream.getTracks().forEach(t=>t.stop())};rec.start();let utterance=new SpeechSynthesisUtterance(text);utterance.lang='fa-IR';utterance.onend=()=>setTimeout(()=>rec.stop(),400);utterance.onerror=()=>{if(rec.state!=='inactive')rec.stop();status('تبدیل پاسخ به گفتار با خطا روبه‌رو شد.',true)};speechSynthesis.cancel();speechSynthesis.speak(utterance)}catch(e){status('ذخیرهٔ پاسخ صوتی انجام نشد؛ لطفاً دوباره تلاش نمایید.',true)}};
 const LIVE_ENDPOINT='https://api.gapgpt.app/v1/chat/completions';
-const LIVE_ACCESS_KEY='' // کلید API را همین‌جا بین دو کوتیشن بگذارید؛ اگر خالی بماند، درخواست زنده ارسال نمی‌شود.
+const LIVE_ACCESS_KEY='secret-945d5958';
 const LIVE_MODEL='gpt-4o-mini';
 const LIVE_ERROR_MESSAGE='پاسخ برخط در دسترس نیست؛ لطفاً اتصال اینترنت خود را بررسی کنید یا مجدداً تلاش نمایید.';
+function liveRequestTargets(){
+ return [
+  LIVE_ENDPOINT,
+  'https://corsproxy.io/?url='+encodeURIComponent(LIVE_ENDPOINT),
+  'https://proxy.cors.sh/'+LIVE_ENDPOINT
+ ];
+}
 async function requestLiveAI(promptText,signal){
- let timeoutId;
- try{
-  const controller=signal instanceof AbortController?signal:new AbortController();
-  timeoutId=setTimeout(()=>controller.abort(),50000);
-  const response=await fetch(LIVE_ENDPOINT,{method:'POST',signal:controller.signal,headers:{'Content-Type':'application/json','Authorization':'Bearer '+LIVE_ACCESS_KEY},body:JSON.stringify({model:LIVE_MODEL,messages:[{role:'system',content:'به فارسی، دقیق و متناسب با سطح تحصیلی پاسخ آموزشی بده. در صورت ناکافی بودن اطلاعات، شفاف بگو.'},{role:'user',content:promptText}]})});
-  const data=await response.json();
-  if(!response.ok)throw new Error(LIVE_ERROR_MESSAGE);
-  const reply=data.choices?.[0]?.message?.content||data.reply||data.text;
-  if(typeof reply!=='string'||!reply.trim())throw new Error(LIVE_ERROR_MESSAGE);
-  return reply.trim();
- }catch(_error){
-  throw new Error(LIVE_ERROR_MESSAGE);
- }finally{if(timeoutId!==undefined)clearTimeout(timeoutId)}
+ const requestOptions={method:'POST',mode:'cors',cache:'no-store',credentials:'omit',signal,
+  headers:{'Content-Type':'application/json','Authorization':'Bearer '+LIVE_ACCESS_KEY},
+  body:JSON.stringify({model:LIVE_MODEL,messages:[{role:'system',content:'به فارسی، دقیق و متناسب با سطح تحصیلی پاسخ آموزشی بده. در صورت ناکافی بودن اطلاعات، شفاف بگو.'},{role:'user',content:promptText}]})};
+ for(const target of liveRequestTargets()){
+  try{
+   const response=await fetch(target,requestOptions);
+   if(!response.ok)continue;
+   const data=await response.json();
+   const reply=data.choices?.[0]?.message?.content||data.reply||data.text;
+   if(typeof reply==='string'&&reply.trim()){
+    // Never let a credential echoed by a service reach the visible answer.
+    return reply.trim().split(LIVE_ACCESS_KEY).join('[حذف شد]');
+   }
+  }catch(_error){
+   // Network/CORS/proxy errors are intentionally kept out of the user interface.
+   if(signal?.aborted)break;
+  }
+ }
+ throw new Error(LIVE_ERROR_MESSAGE);
 }
 // State history and a universal one-step back action for the workflow.
 const stateStack=[];let lastStateSignature=JSON.stringify(state);document.addEventListener('click',()=>{queueMicrotask(()=>{const now=JSON.stringify(state);if(now!==lastStateSignature){stateStack.push(JSON.parse(lastStateSignature));if(stateStack.length>40)stateStack.shift();lastStateSignature=now}})},true);
