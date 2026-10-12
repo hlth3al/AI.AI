@@ -249,7 +249,7 @@ const opGuide=opGuides[op]||'مفهوم را مرحله‌به‌مرحله تح
  const contentBlock=text?`متن ورودی برای بررسی:\n«${text.slice(0,3000)}${text.length>3000?' … (ادامهٔ متن برای اختصار نمایش داده نشد)':''}»`:`ورودی متنی در دسترس نیست. ${source} از اطلاعات موجود نمی‌توان محتوای تصویر/صوت را حدس زد؛ شرح تصویر یا متن پیاده‌سازی‌شده را در کادر منبع وارد کنید. بااین‌حال راهنمای آموزشی و چارچوب تحلیل زیر بر اساس انتخاب‌های شما آماده شده است.`;
  const action=isAnswer?'چون زیرگروه «پاسخ» است، ابتدا درستی، کامل‌بودن و دلیل هر ادعا را بسنجید؛ سپس شکاف‌های دانشی را به پرسش یادگیری تبدیل کنید.':'چون زیرگروه «سؤال» است، خواسته، داده‌های صریح، واژه‌های کلیدی و پیش‌نیازها را جدا کنید؛ قبل از پاسخ، مسیر حل را حدس بزنید.';
  const practice=text?'۱) پاسخ یا راه‌حل را با بیان خودتان بازسازی کنید.\n۲) برای هر گام بگویید چرا معتبر است و چه دانشی لازم دارد.\n۳) یک مثال تازه بسازید و نتیجه را بررسی کنید.':'۱) متن یا شرح محتوای منبع را وارد کنید.\n۲) ابتدا بدون کمک پاسخ یا برداشت اولیه بنویسید.\n۳) نتیجه را با دلیل و یک مثال مستقل ارزیابی کنید.';
- return `تحلیل آموزشی و دانشگاهیِ شخصی‌سازی‌شده\n\nمسیر انتخاب‌شده\nگروه: ${group}\nمنبع: ${state.modalityName||'تعیین نشده'}\nزیرگروه: ${sub}\nعملیات: ${op}\nسطح: ${grade}\nنوع خروجی: ${state.outputMode==='audio'?'شنیداری':'نوشتاری'}\nآپشنک‌های فعال: ${state.optks.length?state.optks.join('، '):'انتخاب نشده'}\n\n۱) محتوای ورودی\n${contentBlock}\n\n۲) هدف و چارچوب یادگیری\n${groupNote}\n${levelNote}\n${action}\n\n۳) اجرای عملیات «${op}»\n${opGuide}\nبرای ورودی موجود، این عملیات را به ادعاها/مفاهیم مشخص متن پیوند دهید و هر نتیجه را با شاهدی از ورودی توجیه کنید. اگر شواهد کافی نیست، ابهام را صریح نگه دارید و اطلاعات لازم را به‌صورت پرسش مطرح کنید؛ داده، منبع یا پاسخ قطعی نسازید.${state.optks.length?state.optks.map((optk,i)=>'\n\n۳-'+(i+1)+') اجرای '+optk+'\n'+(optkGuides[optk]||'این آپشنک را با تکیه بر محتوای ورودی و سطح «'+grade+'» اجرا کنید و خروجی را ساختارمند و مرحله‌ای ارائه دهید.')).join(''):''}\n\n۴) تحلیل مفهومی و روش کار\n• مفهوم محوری: از متن، موضوع یا مهارت اصلی را در یک جمله استخراج کنید؛ در صورت نبود متن، آن را پس از دریافت شرح منبع تعیین کنید.\n• پیش‌نیاز: تعریف‌ها و دانسته‌هایی را که برای فهم موضوع لازم است نام ببرید و هر مورد نامعلوم را علامت بزنید.\n• استدلال: مسیر «داده/ادعا ← قاعده یا شاهد ← نتیجه» را قدم‌به‌قدم تنظیم کنید؛ پرش منطقی را مشخص کنید.\n• دقت علمی: اصطلاحات را تعریف کنید، واحدها/شرط‌ها را کنترل کنید و میان واقعیت، تفسیر و حدس مرز بگذارید.\n\n۵) تمرین فعال و بازخورد\n${practice}\nپس از هر تلاش، بازخورد را به سه بخش تقسیم کنید: آنچه درست انجام شد، نقطه‌ای که نیاز به بازبینی دارد، و یک گام مشخص برای پیشرفت. پاسخ را رونویسی نکنید؛ با زبان خودتان بازسازی و از مدرس دربارهٔ ابهام‌ها سؤال کنید.\n\n۶) معیار ارزیابی\nفهم خواسته و واژگان کلیدی (۲۵٪)؛ صحت مفاهیم و استدلال (۳۵٪)؛ شواهد/مثال و کاربرد (۲۵٪)؛ وضوح نگارش یا بیان و خودبازبینی (۱۵٪). برای تکلیف پژوهشی، اعتبار منبع و شفافیت روش را نیز بررسی کنید.\n\n۷) جمع‌بندی و گام بعدی\nیک خلاصهٔ سه‌جمله‌ای با بیان خودتان بنویسید، مهم‌ترین نکتهٔ نامطمئن را مشخص کنید و یک پرسش پیگیری طرح کنید. اگر ورودی تصویر یا صوت است، شرح قابل‌خواندن یا متن پیاده‌سازی‌شده را اضافه کنید تا تحلیل محتوایی دقیق‌تر شود. این پاسخ با سرویس هوش مصنوعی برخط آماده می‌شود؛ متن ورودی برای تولید پاسخ به ارائه‌دهندهٔ API ارسال می‌شود.`;
+ return `تحلیل آموزشی و دانشگاهیِ شخصی‌سازی‌شده\n\nمسیر انتخاب‌شده\nگروه: ${group}\nمنبع: ${state.modalityName||'تعیین نشده'}\nزیرگروه: ${sub}\nعملیات: ${op}\nسطح: ${grade}\nنوع خروجی: ${state.outputMode==='audio'?'شنیداری':'نوشتاری'}\nآپشنک‌های فعال: ${state.optks.length?state.optks.join('، '):'انتخاب نشده'}\n\n۱) محتوای ورودی\n${contentBlock}\n\n۲) هدف و چارچوب یادگیری\n${groupNote}\n${levelNote}\n${action}\n\n۳) اجرای عملیات «${op}»\n${opGuide}\nبرای ورودی موجود، این عملیات را به ادعاها/مفاهیم مشخص متن پیوند دهید و هر نتیجه را با شاهدی از ورودی توجیه کنید. اگر شواهد کافی نیست، ابهام را صریح نگه دارید و اطلاعات لازم را به‌صورت پرسش مطرح کنید؛ داده، منبع یا پاسخ قطعی نسازید.${state.optks.length?state.optks.map((optk,i)=>'\n\n۳-'+(i+1)+') اجرای '+optk+'\n'+(optkGuides[optk]||'این آپشنک را با تکیه بر محتوای ورودی و سطح «'+grade+'» اجرا کنید و خروجی را ساختارمند و مرحله‌ای ارائه دهید.')).join(''):''}\n\n۴) تحلیل مفهومی و روش کار\n• مفهوم محوری: از متن، موضوع یا مهارت اصلی را در یک جمله استخراج کنید؛ در صورت نبود متن، آن را پس از دریافت شرح منبع تعیین کنید.\n• پیش‌نیاز: تعریف‌ها و دانسته‌هایی را که برای فهم موضوع لازم است نام ببرید و هر مورد نامعلوم را علامت بزنید.\n• استدلال: مسیر «داده/ادعا ← قاعده یا شاهد ← نتیجه» را قدم‌به‌قدم تنظیم کنید؛ پرش منطقی را مشخص کنید.\n• دقت علمی: اصطلاحات را تعریف کنید، واحدها/شرط‌ها را کنترل کنید و میان واقعیت، تفسیر و حدس مرز بگذارید.\n\n۵) تمرین فعال و بازخورد\n${practice}\nپس از هر تلاش، بازخورد را به سه بخش تقسیم کنید: آنچه درست انجام شد، نقطه‌ای که نیاز به بازبینی دارد، و یک گام مشخص برای پیشرفت. پاسخ را رونویسی نکنید؛ با زبان خودتان بازسازی و از مدرس دربارهٔ ابهام‌ها سؤال کنید.\n\n۶) معیار ارزیابی\nفهم خواسته و واژگان کلیدی (۲۵٪)؛ صحت مفاهیم و استدلال (۳۵٪)؛ شواهد/مثال و کاربرد (۲۵٪)؛ وضوح نگارش یا بیان و خودبازبینی (۱۵٪). برای تکلیف پژوهشی، اعتبار منبع و شفافیت روش را نیز بررسی کنید.\n\n۷) جمع‌بندی و گام بعدی\nیک خلاصهٔ سه‌جمله‌ای با بیان خودتان بنویسید، مهم‌ترین نکتهٔ نامطمئن را مشخص کنید و یک پرسش پیگیری طرح کنید. اگر ورودی تصویر یا صوت است، شرح قابل‌خواندن یا متن پیاده‌سازی‌شده را اضافه کنید تا تحلیل محتوایی دقیق‌تر شود. این پاسخ در همین صفحه و بدون ارسال دادهٔ شما به بیرون ساخته شده است.`;
 }
 async function runRequest(level,mode,card){if(!getAllowedLevels().includes(level)){status('این گروه فقط برای سطح تحصیلی مجاز قابل استفاده است.');return}state.level=level;state.optks=(state.optksByLevel[level]||[]).slice();state.outputMode=mode;document.querySelectorAll('.level').forEach(x=>x.classList.toggle('active',x===card));updateTracker();resetOutput();show('result');scrollTo('outputPanel');const localAnswer=generateAnalysis();const requestId=(window.__aiRequestId||0)+1;window.__aiRequestId=requestId;$('result').textContent=localAnswer;status('پاسخ هوشمند محلی آماده شد؛ در حال بررسی پاسخ زنده…');if(mode==='audio')speak(localAnswer);const controller=new AbortController();const timeoutId=setTimeout(()=>controller.abort(),50000);try{const liveAnswer=await requestLiveAI(localAnswer,controller.signal);if(requestId!==window.__aiRequestId)return;$('result').textContent=liveAnswer;status('پاسخ زنده آماده شد.');if(mode==='audio')speak(liveAnswer)}catch(e){if(requestId===window.__aiRequestId)status('پاسخ برخط در دسترس نیست؛ لطفاً اتصال اینترنت خود را بررسی کنید یا مجدداً تلاش نمایید. پاسخ آماده‌شده در صفحه حفظ شده است.',true);}finally{clearTimeout(timeoutId)}}
 function speak(text){if(!('speechSynthesis'in window)){status($('status').textContent+'\nاین مرورگر قابلیت تبدیل متن به گفتار ندارد.');return}speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(text);u.lang='fa-IR';u.onstart=()=>$('stopSpeech').classList.remove('hidden');u.onend=()=> $('stopSpeech').classList.add('hidden');u.onerror=()=>{$('stopSpeech').classList.add('hidden');status($('status').textContent+'\nپخش گفتار با خطا روبه‌رو شد.')};$('stopSpeech').classList.remove('hidden');speechSynthesis.speak(u)}$('stopSpeech').onclick=()=>{speechSynthesis.cancel();$('stopSpeech').classList.add('hidden')};
@@ -257,25 +257,51 @@ $('clearResult').onclick=()=>{resetOutput();status('متن پاسخ پاک شد�
 $('copyResult').onclick=async()=>{let text=$('result').textContent;if(!text){status('هنوز پاسخی برای کپی وجود ندارد. ابتدا سطح و نوع پاسخ را انتخاب کنید.');return}try{await navigator.clipboard.writeText(text);status('پاسخ کپی شد.')}catch(e){let ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();status('پاسخ کپی شد.')}};
 $('saveText').onclick=()=>{if(!$('result').textContent){status('هنوز پاسخی برای ذخیره وجود ندارد. ابتدا تحلیل را بسازید.');return}let blob=new Blob(['\ufeff'+$('result').textContent],{type:'text/plain;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='AI.AI-answer.txt';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
 $('saveAudio').onclick=async()=>{let text=$('result').textContent;if(!text){status('هنوز پاسخی برای ذخیرهٔ صوتی وجود ندارد. ابتدا تحلیل را بسازید.');return}if(!navigator.mediaDevices?.getDisplayMedia||!window.MediaRecorder){status('ضبط مستقیم صدای برگه در این مرورگر در دسترس نیست؛ پاسخ با گفتار فارسی خوانده می‌شود. برای ذخیرهٔ فایل صوتی، مرورگر سازگار را به کار ببرید.');speak(text);return}try{status('در پنجرهٔ اشتراک‌گذاری، همین برگه و اشتراک‌گذاری صدای برگه را انتخاب کنید.');let stream=await navigator.mediaDevices.getDisplayMedia({video:true,audio:true});if(!stream.getAudioTracks().length){stream.getTracks().forEach(t=>t.stop());status('صدای برگه در اشتراک‌گذاری فعال نشد؛ دوباره تلاش کنید و اشتراک‌گذاری صدا را روشن کنید.',true);return}let chunks=[],mime=MediaRecorder.isTypeSupported('audio/webm;codecs=opus')?'audio/webm;codecs=opus':'audio/webm',rec=new MediaRecorder(stream,{mimeType:mime});rec.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};rec.onstop=()=>{if(chunks.length){let blob=new Blob(chunks,{type:mime}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='AI.AI-answer-audio.webm';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000);status('فایل صوتی پاسخ ذخیره شد.')}stream.getTracks().forEach(t=>t.stop())};rec.start();let utterance=new SpeechSynthesisUtterance(text);utterance.lang='fa-IR';utterance.onend=()=>setTimeout(()=>rec.stop(),400);utterance.onerror=()=>{if(rec.state!=='inactive')rec.stop();status('تبدیل پاسخ به گفتار با خطا روبه‌رو شد.',true)};speechSynthesis.cancel();speechSynthesis.speak(utterance)}catch(e){status('ذخیرهٔ پاسخ صوتی انجام نشد؛ لطفاً دوباره تلاش نمایید.',true)}};
+// Configure the same-origin Flask proxy here (for example: '/api/chat').
+// The browser key is used only for the direct first attempt.
+const PROXY_URL='/api/chat';
 const LIVE_ENDPOINT='https://api.gapgpt.app/v1/chat/completions';
 const LIVE_ACCESS_KEY='secret-ee473b47';
 const LIVE_MODEL='gpt-4o-mini';
 const LIVE_ERROR_MESSAGE='پاسخ برخط در دسترس نیست؛ لطفاً اتصال اینترنت خود را بررسی کنید یا مجدداً تلاش نمایید.';
 async function requestLiveAI(promptText,signal){
  const controller=new AbortController();
- const abortFromCaller=()=>controller.abort();
- if(signal){if(signal.aborted)controller.abort();else signal.addEventListener('abort',abortFromCaller,{once:true})}
- const timeoutId=setTimeout(()=>controller.abort(),50000);
- try{
-  const response=await fetch(LIVE_ENDPOINT,{method:'POST',signal:controller.signal,headers:{'Content-Type':'application/json','Authorization':'Bearer '+LIVE_ACCESS_KEY},body:JSON.stringify({model:LIVE_MODEL,messages:[{role:'system',content:'به فارسی، دقیق و متناسب با سطح تحصیلی پاسخ آموزشی بده. در صورت ناکافی بودن اطلاعات، شفاف بگو.'},{role:'user',content:promptText}]})});
+ let timeoutId,externalAbortHandler;
+ const externalSignal=signal&&typeof signal.addEventListener==='function'?signal:null;
+ if(externalSignal){
+  if(externalSignal.aborted)controller.abort();
+  else{externalAbortHandler=()=>controller.abort();externalSignal.addEventListener('abort',externalAbortHandler,{once:true});}
+ }
+ timeoutId=setTimeout(()=>controller.abort(),50000);
+ const body=JSON.stringify({model:LIVE_MODEL,messages:[
+  {role:'system',content:'به فارسی، دقیق و متناسب با سطح تحصیلی پاسخ آموزشی بده. در صورت ناکافی بودن اطلاعات، شفاف بگو.'},
+  {role:'user',content:String(promptText)}
+ ]});
+ async function send(url,headers){
+  const response=await fetch(url,{method:'POST',signal:controller.signal,headers,body});
+  if(!response.ok)throw new Error('request_failed');
   const data=await response.json();
-  if(!response.ok)throw new Error(LIVE_ERROR_MESSAGE);
   const reply=data.choices?.[0]?.message?.content||data.reply||data.text;
-  if(typeof reply!=='string'||!reply.trim())throw new Error(LIVE_ERROR_MESSAGE);
+  if(typeof reply!=='string'||!reply.trim())throw new Error('empty_reply');
   return reply.trim();
+ }
+ try{
+  if(controller.signal.aborted)throw new Error('cancelled');
+  try{
+   return await send(LIVE_ENDPOINT,{'Content-Type':'application/json','Authorization':'Bearer '+LIVE_ACCESS_KEY});
+  }catch(directFailure){
+   // Honor caller cancellation/timeout; only request failures fall back.
+   if(controller.signal.aborted)throw directFailure;
+  }
+  if(controller.signal.aborted)throw new Error('cancelled');
+  return await send(PROXY_URL,{'Content-Type':'application/json'});
  }catch(_error){
+  // Never expose credentials, endpoint names, or raw network errors to the UI.
   throw new Error(LIVE_ERROR_MESSAGE);
- }finally{clearTimeout(timeoutId);if(signal)signal.removeEventListener('abort',abortFromCaller)}
+ }finally{
+  clearTimeout(timeoutId);
+  if(externalSignal&&externalAbortHandler)externalSignal.removeEventListener('abort',externalAbortHandler);
+ }
 }
 // State history and a universal one-step back action for the workflow.
 const stateStack=[];let lastStateSignature=JSON.stringify(state);document.addEventListener('click',()=>{queueMicrotask(()=>{const now=JSON.stringify(state);if(now!==lastStateSignature){stateStack.push(JSON.parse(lastStateSignature));if(stateStack.length>40)stateStack.shift();lastStateSignature=now}})},true);
