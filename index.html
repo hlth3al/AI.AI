@@ -65,16 +65,32 @@ header h1 span,.quoted span{display:block}
 .card:hover,.action:hover,.secondary:hover{transform:none!important}
 @media(max-width:650px){body{padding:8px}.intro-line{margin:8px 0;padding:8px}.manager-copy{text-align:right}.company{line-height:1.9}}
 @media(prefers-reduced-motion:reduce){.ai-emphasis,.ai-letter,.brand-cap{animation:none!important}}
+
+/* ==== AI exact-LTR rendering + large colorful mild shake (safe overlay) ==== */
+.ai-badge-fixed{display:inline-block!important;unicode-bidi:isolate!important;direction:ltr!important;font-size:1.3em;font-weight:900;color:#38bdf8;animation:aiShakeSoft 1.8s ease-in-out infinite;text-shadow:none!important}
+.ai-badge-fixed.ai-ltr-pink{font-size:1.35em;color:#ec4899}
+@keyframes aiShakeSoft{
+ 0%,100%{transform:translateY(0) rotate(0deg)}
+ 25%{transform:translateY(-1.5px) rotate(-1deg)}
+ 50%{transform:translateY(1px) rotate(1deg)}
+ 75%{transform:translateY(-1px) rotate(-0.5deg)}
+}
+.ai-emphasis,.ai-letter,.brand-cap,.en-title .ai-cap{direction:ltr;unicode-bidi:isolate;display:inline-block;text-shadow:none!important}
+.ai-emphasis{font-size:1.3em;font-weight:900;color:#38bdf8;animation:aiShakeSoft 1.8s ease-in-out infinite}
+.company .ai-emphasis,.manager-copy .ai-emphasis,.mission .ai-emphasis,.reassurance .ai-emphasis{color:#ffcf5a}
+.pref-opt .ai-emphasis{color:#ec4899;font-size:1.35em}
+footer .ai-emphasis{color:#38bdf8;font-size:1.35em}
+@media(prefers-reduced-motion:reduce){.ai-badge-fixed,.ai-emphasis,.ai-letter{animation:none!important}}
 </style></head><body><main class="wrap">
 <header class="glass intro-card">
-  <div class="headline en-title intro-line" lang="en" dir="ltr">Artificial Intelligence(AI)</div>
-  <div class="headline en-title intro-line" lang="en" dir="ltr">Lessons Analyzer of Iranians(AI)</div>
+  <div class="headline en-title intro-line" lang="en" dir="ltr">Artificial Intelligence<span class="ai-badge-fixed" dir="ltr">(AI)</span></div>
+  <div class="headline en-title intro-line" lang="en" dir="ltr">Lessons Analyzer of Iranians<span class="ai-badge-fixed" dir="ltr">(AI)</span></div>
   <div class="company intro-line">شرکت صنایع هوش مصنوعی تهرانیان</div>
-  <h1 class="headline intro-line"><span>شرکت هوش مصنوعی (AI)</span><span>آنالیزور درس ما ایرانیان (AI)</span></h1>
-  <div class="brand intro-line" aria-label="AI.AI">AI.AI</div>
-  <div class="tagline intro-line quoted"><span>"هوش مصنوعی(AI)</span><span>آنالیزور درس ما ایرانیان(AI)"</span></div>
+  <h1 class="headline intro-line"><span>شرکت هوش مصنوعی <span class="ai-badge-fixed" dir="ltr">(AI)</span></span><span>آنالیزور درس ما ایرانیان <span class="ai-badge-fixed" dir="ltr">(AI)</span></span></h1>
+  <div class="brand intro-line" aria-label="AI.AI"><span class="ai-badge-fixed ai-ltr-pink" dir="ltr">AI.AI</span></div>
+  <div class="tagline intro-line quoted"><span>"هوش مصنوعی<span class="ai-badge-fixed" dir="ltr">(AI)</span></span><span>آنالیزور درس ما ایرانیان<span class="ai-badge-fixed" dir="ltr">(AI)</span>"</span></div>
   <section class="manager-copy framed-copy">
-    <p class="manager-title">مدیرعامل و هدایت کننده علمی و طراح هوش مصنوعی AI.AI:</p>
+    <p class="manager-title">مدیرعامل و هدایت کننده علمی و طراح هوش مصنوعی <span class="ai-badge-fixed ai-ltr-pink" dir="ltr">AI.AI</span>:</p>
     <p>افتخار کسب رتبه ۳۲ کنکور دکتری و همچنین مفتخر بتحصیل در ۶ دانشکده: شیلات، شیمی، زبان، مدیریت، مهندسی IT، مهندسی صنایع هستند!(صحت کلام را از وزارت علوم جویا شوید!)</p>
     <p>دقیقا امری غیر ممکن هست که محصلی(ضعیف-زرنگ) از این هوش مصنوعی آنالیزور دروس به شیوه گام به گام دروس ابتدایی تا دکتری با پشتیبانی از چند زبان دنیا با اینهمه آپشن با ابزارهای نوشتاری و شنیداری ،استخراج کننده مفاهیم کلیدی و تله و دامها و خطاهای پر تکرار محصلین، مشاوره و بهینه سازی و ارتقاء مسیر موفقیت تحصیلی و جمع بندی نکات دروس استفاده کند و نتواند در شرائط عادی و مجازی رتبه برتر شود!</p>
   </section>
@@ -345,7 +361,8 @@ async function copyPaymentText(value,label){try{if(navigator.clipboard && window
   const text=node.nodeValue,rx=/(هوش مصنوعی|AI)/g;let m,last=0,frag=document.createDocumentFragment();
   while((m=rx.exec(text))){if(m.index>last)frag.append(document.createTextNode(text.slice(last,m.index)));
    if(m[0]==='هوش مصنوعی'){const span=document.createElement('span');span.className='ai-emphasis';span.textContent=m[0];frag.append(span)}
-   else {for(const ch of 'AI'){const span=document.createElement('span');span.className='ai-emphasis';span.textContent=ch;frag.append(span)}}last=rx.lastIndex;
+   else if(m[0]==='AI.AI'){const span=document.createElement('span');span.className='ai-badge-fixed ai-ltr-pink';span.setAttribute('dir','ltr');span.textContent='AI.AI';frag.append(span)}
+   else {const span=document.createElement('span');span.className='ai-badge-fixed';span.setAttribute('dir','ltr');span.textContent='AI';frag.append(span)}last=rx.lastIndex;
   }
   if(last<text.length)frag.append(document.createTextNode(text.slice(last)));node.replaceWith(frag);
  }
