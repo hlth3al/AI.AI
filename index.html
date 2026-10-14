@@ -1,374 +1,330 @@
-<!doctype html>
-<html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#090b12"><title>هوش مصنوعی آنالیزور دروس ایرانیان برلیان لعلیان | AI.AI</title>
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>پلتفرم هوش مصنوعی آنالیزور درس ما ایرانیان (AI.AI)</title>
 <style>
-:root{--bg:#080a10;--panel:rgba(20,24,36,.82);--red:#ff315f;--pink:#ff7791;--muted:#a5aec1;--line:rgba(255,70,109,.25);--green:#35d6a0}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;color:#f5f6fb;background:radial-gradient(ellipse at 15% 0%,#30101f 0,transparent 34%),radial-gradient(ellipse at 90% 45%,#101b31 0,transparent 38%),var(--bg);font:600 16px/1.75 Vazirmatn,Tahoma,Arial,sans-serif;padding:18px}button,input,textarea,select{font:inherit}button{color:inherit}.wrap{max-width:1320px;margin:auto;display:grid;gap:18px}.glass{background:var(--panel);border:1px solid var(--line);border-radius:22px;box-shadow:0 18px 55px #0008,0 0 24px #ff315f0d;backdrop-filter:blur(15px)}header{text-align:center;padding:27px 18px;position:relative;overflow:hidden}header:before{content:"";position:absolute;inset:0 10% auto;height:2px;background:linear-gradient(90deg,transparent,var(--red),transparent)}.company{color:var(--pink);font-size:1.05rem}.headline{font-size:clamp(1.1rem,3vw,1.8rem);margin:4px 0}.en-title{color:#dfe4ef;letter-spacing:.02em}.en-title .ai-cap,.brand-cap{display:inline-block;font-size:1.55em;line-height:1;font-weight:1000;color:#5cf2d6;text-shadow:0 0 12px rgba(92,242,214,.85),0 0 26px rgba(92,242,214,.5);margin:0 1px;animation:aiShake .72s ease-in-out infinite;animation-delay:var(--ai-delay,0s);will-change:transform}.ai-letter{vertical-align:baseline}@keyframes aiShake{0%,100%{transform:translate(0,0) rotate(0)}15%{transform:translate(-2px,-1px) rotate(-8deg)}30%{transform:translate(2px,1px) rotate(8deg)}45%{transform:translate(-2px,1px) rotate(-7deg)}60%{transform:translate(2px,-1px) rotate(7deg)}75%{transform:translate(-1px,1px) rotate(-4deg)}}.brand{font-size:clamp(3rem,10vw,6.5rem);line-height:1.1;font-weight:1000;letter-spacing:.06em;color:#fff;text-shadow:0 0 14px #ff315f,0 0 42px #ff315f99;margin:2px}.ai-selection-stopped .ai-letter{animation:none!important}
-.tagline{font-size:1.15rem;color:#d4d8e4}.reassurance{padding:18px 22px;text-align:center;border:1px solid rgba(53,214,160,.55);background:linear-gradient(120deg,rgba(53,214,160,.17),rgba(255,49,95,.12));box-shadow:0 0 28px rgba(53,214,160,.12)}.reassurance p{margin:0;color:#e8fff5;font-size:clamp(1rem,2.2vw,1.28rem);line-height:1.9;font-weight:800;text-shadow:0 1px 12px rgba(53,214,160,.22)}
-.credit{display:inline-block;margin-top:10px;padding:5px 15px;border:1px solid var(--line);background:#ff315f12;border-radius:30px;color:#ffc0cd;font-size:.9rem}.mission{padding:14px 18px;color:#d7d9e2}.mission summary{cursor:pointer;color:#ff9caf;font-weight:800}.mission p{margin:10px 0 0}.tracker{padding:15px 18px;display:grid;grid-template-columns:repeat(4,minmax(140px,1fr));gap:10px}.track{border:1px solid #ffffff12;background:#ffffff06;padding:9px 12px;border-radius:12px;font-size:.87rem}.track b{display:block;color:var(--muted);font-size:.76rem}.track span{color:#fff}.track .on{color:#ff9caf}.section{padding:20px}.section h2{font-size:1.25rem;margin:0 0 4px}.hint{color:var(--muted);margin:0 0 15px;font-size:.9rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.card{position:relative;text-align:right;min-height:105px;padding:17px;border-radius:17px;border:1px solid #ffffff17;background:linear-gradient(145deg,#1a2030d9,#111522d9);cursor:pointer;transition:.2s;touch-action:manipulation}.card:hover,.card:focus-visible{transform:translateY(-3px);border-color:#ff5578;box-shadow:0 0 20px #ff315f28;outline:none}.card.selected{border-color:var(--red);background:linear-gradient(145deg,#4b1728,#171522);box-shadow:0 0 20px #ff315f30}.card .num{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:10px;background:#ff315f22;color:#ff8da5;margin-left:8px}.card small{display:block;color:var(--muted);margin-top:4px}.card .badge{position:absolute;left:12px;top:12px;color:var(--green);font-size:.72rem}.subgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}.modcard{min-height:118px}.ops{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:9px}.op{padding:12px;border:1px solid #ffffff18;background:#ffffff08;border-radius:13px;text-align:right;cursor:pointer;transition:.2s}.op:hover,.op.selected{border-color:var(--red);background:#ff315f1b}.levels{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}.level{padding:13px;border:1px solid #ffffff16;border-radius:14px;background:#ffffff06}.level.active{border-color:#ff6380}.level strong{display:block;margin-bottom:8px}.actions{display:flex;gap:8px;flex-wrap:wrap}.action,.secondary{border:1px solid #ff557766;background:linear-gradient(135deg,#e92350,#9d1737);border-radius:10px;padding:8px 12px;cursor:pointer;font-size:.85rem;transition:.2s}.action:hover,.secondary:hover{filter:brightness(1.2);transform:translateY(-1px)}.secondary{background:#ffffff0b;border-color:#ffffff2b}.sourcebox{margin:16px 0;padding:15px;border-radius:15px;background:#090c14;border:1px solid #ffffff19}.sourcebox label{display:block;margin:8px 0}.sourcebox input[type=file],.sourcebox textarea,.settings input,.settings textarea{width:100%;padding:10px 12px;color:#fff;background:#090c14;border:1px solid #ffffff26;border-radius:10px}.sourcebox textarea{min-height:110px;resize:vertical}.preview{max-width:min(100%,560px);max-height:380px;display:block;margin:12px auto;border-radius:12px}.audio-player{width:100%;margin-top:12px}.note{font-size:.82rem;color:#ffc3ce}.transcript{color:#a9f2d4}.settings{padding:16px 18px}.settings summary{cursor:pointer;color:#ff9caf;font-size:1.05rem}.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px}.fields label{display:grid;gap:5px;color:#c7ccda;font-size:.88rem}.fields input{width:100%;border:1px solid #ffffff25;border-radius:9px;padding:9px;background:#090c14;color:white}.output{padding:20px;min-height:130px}.output h2{margin:0 0 8px}.status{border-radius:11px;background:#ffffff08;padding:11px;color:#c9cede;white-space:pre-wrap}.status.error{color:#ff9aab;border:1px solid #ff315f66}.result{margin-top:12px;padding:15px;background:#090c14;border:1px solid #ffffff16;border-radius:13px;white-space:pre-wrap;overflow-wrap:anywhere}.tools{display:flex;gap:8px;margin:12px 0 16px;padding:12px;border:1px solid #ff557766;background:linear-gradient(120deg,#ff315f18,#ffffff06);border-radius:14px;flex-wrap:wrap}.tools button{font-weight:800;min-height:44px}.mission summary{user-select:none;touch-action:manipulation}.mission summary:focus-visible{outline:2px solid var(--pink);outline-offset:3px;border-radius:8px}.hidden{display:none!important}.toast{color:var(--muted);font-size:.82rem}footer{text-align:center;color:#80899e;font-size:.8rem;padding:8px}.optkgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px;margin-top:8px}.optk{display:flex;align-items:center;gap:7px;text-align:right;padding:10px 12px;border:1px solid #ffffff18;background:#ffffff08;border-radius:12px;cursor:pointer;transition:.2s;font-size:.87rem}.optk:hover{border-color:#ff5578}.optk.selected{border-color:var(--red);background:#ff315f1b}.optk input{accent-color:var(--red)}@media(max-width:650px){body{padding:10px}.tracker{grid-template-columns:repeat(2,minmax(0,1fr))}.section{padding:16px}.grid{grid-template-columns:1fr}.card{min-height:80px}}
+:root{--bg:#070913;--card:#101528;--border:#ef4444;--text:#f8fafc;--muted:#94a3b8;--cyan:#06b6d4;--green:#10b981;--red:#ef4444;--gold:#f59e0b}
+*{box-sizing:border-box;margin:0;padding:0;text-shadow:none !important}
+body{background:var(--bg);color:var(--text);font-family:Tahoma,system-ui,-apple-system,sans-serif;line-height:1.7;padding:14px;padding-bottom:120px}
+.container{max-width:960px;margin:0 auto}
+.ltr{direction:ltr !important;unicode-bidi:isolate;display:inline-block}
+.shake{animation:aiShakeSoft 2.4s ease-in-out infinite;font-weight:900}
+@keyframes aiShakeSoft{0%,100%{transform:translate(0,0)}20%{transform:translate(-1.5px,1px)}40%{transform:translate(1.5px,-1px)}60%{transform:translate(-1px,-1.5px)}80%{transform:translate(1px,1.5px)}}
+.brand-header{text-align:center;padding:18px;border:2px solid var(--border);border-radius:18px;background:rgba(239,68,68,0.06);margin-bottom:16px}
+.brand-header h1{font-size:1.45rem;color:#fca5a5;margin-bottom:8px}
+.brand-header h2{font-size:1.1rem;color:#e2e8f0;margin-bottom:6px}
+.brand-header p{font-size:0.92rem;color:var(--muted);margin-top:6px}
+.guarantee-box{background:#181014;border:2px dashed #f43f5e;border-radius:14px;padding:14px;margin-bottom:16px;text-align:justify;font-size:0.93rem}
+.tracker-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:16px}
+.track-card{background:var(--card);border:1px solid #334155;border-radius:12px;padding:10px 14px;font-size:0.86rem}
+.track-card span{display:block;color:var(--cyan);font-weight:700;margin-top:3px}
+.panel{background:var(--card);border:2px solid var(--border);border-radius:16px;padding:18px;margin-bottom:18px;display:none}
+.panel.active{display:block}
+.panel-title{font-size:1.15rem;font-weight:700;color:#f87171;margin-bottom:14px;border-bottom:1px solid #334155;padding-bottom:8px}
+.grid-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.card-btn{background:#0b0f19;border:1.5px solid #ef4444;color:var(--text);padding:14px;border-radius:12px;cursor:pointer;text-align:right;font-size:0.92rem;transition:all .2s;outline:none}
+.card-btn:hover,.card-btn.selected{background:rgba(239,68,68,0.18);border-color:#fca5a5;transform:translateY(-2px)}
+.badge{display:inline-block;padding:3px 8px;border-radius:8px;font-size:0.75rem;background:#374151;color:#f3f4f6;margin-top:6px}
+.badge-gold{background:rgba(245,158,11,0.25);color:var(--gold);border:1px solid var(--gold)}
+.badge-green{background:rgba(16,185,129,0.25);color:var(--green);border:1px solid var(--green)}
+.btn-group{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.btn{background:#1e293b;border:1px solid #475569;color:#fff;padding:10px 16px;border-radius:10px;cursor:pointer;font-size:0.88rem}
+.btn:hover{background:#334155}
+.btn-primary{background:#ef4444;border-color:#f87171}
+.btn-primary:hover{background:#dc2626}
+textarea{width:100%;height:130px;background:#090d16;border:1px solid #475569;border-radius:10px;color:#fff;padding:12px;font-family:inherit;font-size:0.92rem;margin-top:10px;resize:vertical}
+.output-box{background:#040711;border:2px solid #10b981;border-radius:14px;padding:16px;margin-top:16px;min-height:140px;white-space:pre-wrap;font-size:0.95rem;line-height:1.8}
+.payment-section{background:#0e1322;border:2px solid #f59e0b;border-radius:16px;padding:18px;margin-top:24px}
+.payment-title{color:var(--gold);font-size:1.1rem;font-weight:700;margin-bottom:10px}
+.card-number-box{background:#1e293b;padding:12px;border-radius:10px;direction:ltr;text-align:center;font-size:1.25rem;font-weight:700;letter-spacing:2px;color:#38bdf8;margin:10px 0}
+.fixed-back{position:fixed;bottom:14px;left:14px;right:14px;max-width:960px;margin:0 auto;background:#dc2626;color:#fff;border:none;border-radius:12px;padding:14px;font-size:1rem;font-weight:700;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,0.6);z-index:999;display:none}
+</style>
+</head>
+<body>
+<div class="container">
 
-@keyframes pulseRedGlow{0%{border-color:#ff2a5f;box-shadow:0 0 12px rgba(255,42,95,.4),inset 0 0 8px rgba(255,42,95,.2)}100%{border-color:#ff5e83;box-shadow:0 0 28px rgba(255,42,95,.9),inset 0 0 18px rgba(255,42,95,.5)}}
-#top-guarantee-banner{margin:0 0 20px;border:2px solid #ff2a5f;box-shadow:0 0 18px rgba(255,42,95,.6),inset 0 0 12px rgba(255,42,95,.3);animation:pulseRedGlow 2s infinite alternate;border-radius:14px;padding:16px 20px;background:rgba(25,10,20,.85);cursor:pointer;touch-action:manipulation}
-#top-guarantee-banner p{color:#fff;font-weight:700;line-height:1.95;font-size:.98rem;margin:0;text-align:justify}
-@media(prefers-reduced-motion:reduce){#top-guarantee-banner{animation:none}}
-#developerApiPanel input:not([type=checkbox]),#developerApiPanel select{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:#101521;color:#fff}#developerApiPanel input[type=checkbox]{width:20px;height:20px}#universalNavigation button{box-shadow:0 8px 25px #0009;background:#171e2c;border:1px solid var(--pink);padding:10px 14px;border-radius:12px}@media(max-width:600px){#universalNavigation{left:8px;bottom:8px}#universalNavigation button{font-size:.82rem;padding:8px 11px}}
-
-.path-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px;margin-top:16px}
-.path-card{display:flex;flex-direction:column;gap:10px;min-width:0;padding:20px;text-align:right;color:#f5f6fb;border:1px solid rgba(255,119,145,.45);border-radius:17px;background:linear-gradient(145deg,rgba(35,25,42,.96),rgba(17,21,34,.96));}
-.path-card h3{margin:0;color:#ff9caf;font-size:1.15rem;line-height:1.8}
-.path-card p{margin:0;color:#e2e5ed;line-height:1.9}
-.path-actions{display:grid;gap:10px;margin-top:6px}
-.path-card .action{white-space:normal;line-height:1.8;min-height:48px}
-button.analysis-path{font:inherit;cursor:pointer;touch-action:manipulation}
-.path-card:focus-visible{outline:3px solid var(--green);outline-offset:3px}
-.path-link{margin-top:auto;padding-top:8px;color:#8de9cb;font-weight:800}
-
-
-/* ==== کارت انتخاب کن ==== */
-#prefPanel{border:2px solid rgba(141,233,203,.55);box-shadow:0 0 16px rgba(141,233,203,.18)}
-#prefPanel h2{color:#8de9cb}
-.pref-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px;margin-top:14px}
-.pref-opt{display:flex;align-items:flex-start;gap:10px;padding:14px;text-align:right;color:#f5f6fb;border:1px solid rgba(255,255,255,.14);border-radius:14px;background:#ffffff08;cursor:pointer;transition:.2s;font-size:.9rem;line-height:1.9}
-.pref-opt:hover{border-color:#8de9cb}
-.pref-opt.selected{border-color:var(--green);background:rgba(141,233,203,.12)}
-.pref-opt input{width:20px;height:20px;margin-top:6px;flex:0 0 auto;accent-color:var(--green);cursor:pointer}
-.pref-opt:focus-within{outline:3px solid var(--green);outline-offset:2px}
-
-/* Layout repair: distinct block flow, readable line-height, no absolute/flex-inline overlap. */
-body{line-height:1.9;overflow-wrap:anywhere}
-.wrap{display:grid;grid-auto-flow:row;align-items:start;gap:18px}
-.wrap>*,header,.intro-line,.manager-copy,.manager-copy p,.reassurance,.mission,.mission-content p,.section,.output,.path-card,footer{position:relative;display:block;min-width:0;line-height:1.9;transform:none}
-header{overflow:visible;padding:clamp(18px,4vw,34px)}
-header:before{pointer-events:none}
-.intro-line{margin:10px auto;padding:5px 10px;max-width:100%;}
-.en-title{font-size:clamp(1.08rem,4.2vw,1.8rem);letter-spacing:0;white-space:normal}
-header h1{display:grid;gap:4px;font-size:clamp(1.15rem,4vw,1.8rem)}
-header h1 span,.quoted span{display:block}
-.company{font-size:clamp(1.3rem,4.5vw,2rem);font-weight:900;color:#ffcc66}
-.brand{font-size:clamp(2.8rem,12vw,6rem);line-height:1.4;color:#55f3dc;text-shadow:none!important;box-shadow:none!important}
-.tagline{font-size:clamp(1.1rem,3.8vw,1.65rem);color:#f2d6ff}
-.manager-copy{margin-top:12px;padding:14px 16px;border:1px solid rgba(255,80,100,.48);border-radius:15px;background:#110d16;text-align:justify}
-.manager-copy p,.mission-content p{margin:0 0 12px;padding:10px;border:1px solid rgba(255,90,110,.24);border-radius:11px;line-height:2.05}
-.manager-copy p:last-child,.mission-content p:last-child{margin-bottom:0}
-.manager-title{font-size:1.12em;font-weight:900;color:#ffb4c2;text-align:center}
-.reassurance{margin:0;padding:18px 22px;line-height:2.05}
-.reassurance p{line-height:2.05;text-shadow:none!important}
-.mission summary{display:block;padding:12px;line-height:2.05}
-.mission summary span{display:block;margin:3px 0}
-.mission .accordion-title{font-size:1.12em;color:#ffd166}
-.mission-content{padding:12px 14px;border-top:1px dashed rgba(255,49,95,.5);line-height:2.05}
-.glass,.card,.op,.level,.optk,.sourcebox,.result,.status,.tools,.path-card,.mission-content p,.manager-copy p{box-shadow:none}
-.ai-emphasis,.ai-letter,.brand-cap,.en-title .ai-cap{display:inline-block!important;position:relative;vertical-align:baseline;line-height:1.65!important;font-size:1.35em!important;font-weight:1000;color:#5cf2d6!important;text-shadow:none!important;box-shadow:none!important;animation:aiShakeSoft 1.25s ease-in-out infinite!important;will-change:transform}
-.company .ai-emphasis,.manager-copy .ai-emphasis,.mission .ai-emphasis,.reassurance .ai-emphasis{color:#ffcf5a!important}
-@keyframes aiShakeSoft{0%,100%{transform:translate(0,0) rotate(0)}25%{transform:translate(-.5px,0) rotate(-1deg)}50%{transform:translate(.5px,.2px) rotate(1deg)}75%{transform:translate(-.3px,0) rotate(-.5deg)}}
-/* Each content region has its own frame. Click/tap temporarily lights the red border. */
-.glass,.card,.op,.level,.optk,.sourcebox,.result,.status,.tools,.path-card,.intro-line,.manager-copy,.mission-content p{border:1px solid rgba(255,75,92,.38)}
-.interaction-glow{border:2px solid #ef4444!important;box-shadow:0 0 16px rgba(239,68,68,.8)!important}
-.card:hover,.action:hover,.secondary:hover{transform:none!important}
-@media(max-width:650px){body{padding:8px}.intro-line{margin:8px 0;padding:8px}.manager-copy{text-align:right}.company{line-height:1.9}}
-@media(prefers-reduced-motion:reduce){.ai-emphasis,.ai-letter,.brand-cap{animation:none!important}}
-
-/* ==== AI exact-LTR rendering + large colorful mild shake (safe overlay) ==== */
-.ai-badge-fixed{display:inline-block!important;unicode-bidi:isolate!important;direction:ltr!important;font-size:1.3em;font-weight:900;color:#38bdf8;animation:aiShakeSoft 1.8s ease-in-out infinite;text-shadow:none!important}
-.ai-badge-fixed.ai-ltr-pink{font-size:1.35em;color:#ec4899}
-@keyframes aiShakeSoft{
- 0%,100%{transform:translateY(0) rotate(0deg)}
- 25%{transform:translateY(-1.5px) rotate(-1deg)}
- 50%{transform:translateY(1px) rotate(1deg)}
- 75%{transform:translateY(-1px) rotate(-0.5deg)}
-}
-.ai-emphasis,.ai-letter,.brand-cap,.en-title .ai-cap{direction:ltr;unicode-bidi:isolate;display:inline-block;text-shadow:none!important}
-.ai-emphasis{font-size:1.3em;font-weight:900;color:#38bdf8;animation:aiShakeSoft 1.8s ease-in-out infinite}
-.company .ai-emphasis,.manager-copy .ai-emphasis,.mission .ai-emphasis,.reassurance .ai-emphasis{color:#ffcf5a}
-.pref-opt .ai-emphasis{color:#ec4899;font-size:1.35em}
-footer .ai-emphasis{color:#38bdf8;font-size:1.35em}
-@media(prefers-reduced-motion:reduce){.ai-badge-fixed,.ai-emphasis,.ai-letter{animation:none!important}}
-</style></head><body><main class="wrap">
-<header class="glass intro-card">
-  <div class="headline en-title intro-line" lang="en" dir="ltr">Artificial Intelligence<span class="ai-badge-fixed" dir="ltr">(AI)</span></div>
-  <div class="headline en-title intro-line" lang="en" dir="ltr">Lessons Analyzer of Iranians<span class="ai-badge-fixed" dir="ltr">(AI)</span></div>
-  <div class="company intro-line">شرکت صنایع هوش مصنوعی تهرانیان</div>
-  <h1 class="headline intro-line"><span>شرکت هوش مصنوعی <span class="ai-badge-fixed" dir="ltr">(AI)</span></span><span>آنالیزور درس ما ایرانیان <span class="ai-badge-fixed" dir="ltr">(AI)</span></span></h1>
-  <div class="brand intro-line" aria-label="AI.AI"><span class="ai-badge-fixed ai-ltr-pink" dir="ltr">AI.AI</span></div>
-  <div class="tagline intro-line quoted"><span>"هوش مصنوعی<span class="ai-badge-fixed" dir="ltr">(AI)</span></span><span>آنالیزور درس ما ایرانیان<span class="ai-badge-fixed" dir="ltr">(AI)</span>"</span></div>
-  <section class="manager-copy framed-copy">
-    <p class="manager-title">مدیرعامل و هدایت کننده علمی و طراح هوش مصنوعی <span class="ai-badge-fixed ai-ltr-pink" dir="ltr">AI.AI</span>:</p>
-    <p>افتخار کسب رتبه ۳۲ کنکور دکتری و همچنین مفتخر بتحصیل در ۶ دانشکده: شیلات، شیمی، زبان، مدیریت، مهندسی IT، مهندسی صنایع هستند!(صحت کلام را از وزارت علوم جویا شوید!)</p>
-    <p>دقیقا امری غیر ممکن هست که محصلی(ضعیف-زرنگ) از این هوش مصنوعی آنالیزور دروس به شیوه گام به گام دروس ابتدایی تا دکتری با پشتیبانی از چند زبان دنیا با اینهمه آپشن با ابزارهای نوشتاری و شنیداری ،استخراج کننده مفاهیم کلیدی و تله و دامها و خطاهای پر تکرار محصلین، مشاوره و بهینه سازی و ارتقاء مسیر موفقیت تحصیلی و جمع بندی نکات دروس استفاده کند و نتواند در شرائط عادی و مجازی رتبه برتر شود!</p>
-  </section>
+<header class="brand-header">
+  <h1 class="ltr shake">Artificial Intelligence Lessons Analyzer of Iranians (AI.AI)</h1>
+  <h2>شرکت صنایع هوش مصنوعی تهرانیان</h2>
+  <h2 style="color:#ef4444">شرکت هوش مصنوعی (AI) آنالیزور دروس ایرانیان (AI) • AI.AI</h2>
+  <h2 style="color:#38bdf8">هوش مصنوعی آنالیزور دروس ایرانیان برلیان لعلیان</h2>
+  <p><strong>مدیرعامل و هدایت‌کننده علمی و طراح AI.AI:</strong> حسین لعلیان؛ رتبه ۳۲ کنکور دکتری، افتخار تحصیل در ۶ دانشکده: شیلات، شیمی، زبان، مدیریت، مهندسی IT، مهندسی صنایع (صحت کلام را از وزارت علوم جویا شوید!)</p>
+  <button class="btn btn-primary" onclick="speakHeader()" style="margin-top:10px">برای پخش صدا لمس یا کلیک کنید 🔊</button>
 </header>
 
-<section class="glass reassurance framed-copy" role="note" aria-label="اطمینان خاطر">
-  <p>خیالتان تخت باشد و مطمئن باشید که بواسطه هوش مصنوعی AI.AI خواهید توانست توی خانه،پیاده روی،مغازه،ماشین،شرکت و در هر جای دیگر تکالیف،تمرین و پاسخ سوالات برگه امتحانی هر درسی را برای مدرس ارسال نمایید!</p>
-</section>
+<div class="guarantee-box">
+  دقیقا امری غیر ممکن هست که محصلی (ضعیف-زرنگ) از این هوش مصنوعی آنالیزوری گام به گام دروس ابتدایی تا دکتری با پشتیبانی از چند زبان دنیا با اینهمه آپشن با ابزارهای نوشتاری و شنیداری، استخراج‌کننده مفاهیم کلیدی و تله و دام‌ها و خطاهای پرتکرار محصلین، مشاوره و بهینه‌سازی و ارتقاء مسیر موفقیت تحصیلی و جمع‌بندی نکات دروس استفاده کند و نتواند در شرائط عادی و مجازی رتبه برتر شود! خیالتان تخت باشد و مطمئن باشید که به‌واسطه هوش مصنوعی AI.AI خواهید توانست در خانه، مغازه، ماشین، شرکت و هر جای دیگر تکالیف و امتحانات را برای مدرس ارسال نمایید.
+</div>
 
-<details class="glass mission framed-copy" style="margin-bottom:20px;border-color:rgba(255,49,95,.45)">
-  <summary><span class="accordion-title">برای مطالعه باز شود:</span><span>مخالفت شدید مدیرعامل،هدایت کننده علمی و طراح هوش مصنوعی AI.AI با:</span></summary>
-  <div class="mission-content">
-    <p>سوء استفاده برخی دانش‌آموزان و دانشجویان در طول تحصیلشان از این هوش مصنوعی؛</p>
-    <p>کپی کردن و ارسال عین پاسخ سوالات به مدرس از مسیر این پلتفرم است!</p>
-    <p>اما با این وجود ایشان به این مهم افتخار می‌کنند که هیچ محصلی با کمک این هوش مصنوعی دچار افت تحصیلی چه در شرایط عادی کشور و چه در شرایط مجازی نخواهد شد؛</p>
-    <p>بلکه به سمت رتبه برتری و پیشرفت تحصیلی گام خواهد نهاد؛</p>
-    <p>چرا که مکانیزم کاری مفید هوش مصنوعی AI.AI یادگیری، تکلیف، تحلیل و تمرین، پیشرفت و پاسخ امتحان شفاهی و امتحان کتبی به مدرس در خانه،پیاده روی،مغازه،ماشین،شرکت و در هر جای دیگر با موبایل است.</p>
+<div class="tracker-bar">
+  <div class="track-card">گروه انتخابی: <span id="tGroup">هنوز انتخاب نشده</span></div>
+  <div class="track-card">منبع / زیرگروه: <span id="tSub">هنوز انتخاب نشده</span></div>
+  <div class="track-card">عملیات آنالیز: <span id="tOp">هنوز انتخاب نشده</span></div>
+  <div class="track-card">سطح تحصیلی: <span id="tLevel">هنوز انتخاب نشده</span></div>
+</div>
+
+<!-- پنل انتخاب اولیه -->
+<div id="prefPanel" class="panel active">
+  <div class="panel-title">انتخاب کن: یکی از سه گزینه زیر را تعیین نمایید تا سریع به مسیر متصل شوید</div>
+  <div class="grid-cards">
+    <button class="card-btn" onclick="setPreference(1)">
+      ✅ میخواهم فقط پاسخ را ببینم و کپی کنم چون میخوام فقط پاسخ را برای مدرس ارسال کنم و نمیخواهم وارد جزئیات تجزیه تحلیل، موشکافی و آنالیز شوم!
+    </button>
+    <button class="card-btn" onclick="setPreference(2)">
+      ✅ میخواهم هم پاسخ را ببینم و هم وارد جزئیات تجزیه تحلیل، موشکافی و آنالیز توسط هوش مصنوعی AI.AI شوم!
+    </button>
+    <button class="card-btn" onclick="setPreference(3)">
+      ✅ میخواهم فقط وارد جزئیات تجزیه تحلیل، موشکافی و آنالیز توسط هوش مصنوعی AI.AI شوم!
+    </button>
   </div>
-</details>
+</div>
 
+<!-- پنل ۱: گروه‌های ۹گانه حقیقی -->
+<div id="groupsPanel" class="panel">
+  <div class="panel-title">۱. انتخاب گروه حقیقی (یک حوزه را انتخاب کنید)</div>
+  <div class="grid-cards">
+    <button class="card-btn" onclick="selectGroup('سؤال و پاسخ درسی', '۳ میلیون تومان')">1آپشن گروه حقیقی ۱: سؤال و پاسخ درسی <div class="badge badge-gold">شهریه ۳ میلیون تومان</div></button>
+    <button class="card-btn" onclick="selectGroup('کنفرانس', '۱ میلیون تومان')">2آپشن گروه حقیقی ۲: کنفرانس <div class="badge badge-green">شهریه ۱ میلیون تومان</div></button>
+    <button class="card-btn" onclick="selectGroup('تحقیق', '۱ میلیون تومان')">3آپشن گروه حقیقی ۳: تحقیق <div class="badge badge-green">شهریه ۱ میلیون تومان</div></button>
+    <button class="card-btn" onclick="selectGroup('پروژه', '۱ میلیون تومان')">4آپشن گروه حقیقی ۴: پروژه <div class="badge badge-green">شهریه ۱ میلیون تومان</div></button>
+    <button class="card-btn" onclick="selectGroup('انشا', '۱ میلیون تومان')">5آپشن گروه حقیقی ۵: انشا <div class="badge badge-green">شهریه ۱ میلیون تومان</div></button>
+    <button class="card-btn" onclick="selectGroup('املا', '۱ میلیون تومان')">6آپشن گروه حقیقی ۶: املا <div class="badge badge-green">شهریه ۱ میلیون تومان</div></button>
+    <button class="card-btn" onclick="selectGroup('مقاله', '۱ میلیون تومان')">7آپشن گروه حقیقی ۷: مقاله <div class="badge badge-green">شهریه ۱ میلیون تومان</div></button>
+    <button class="card-btn" onclick="selectGroup('پایان‌نامه', '۱ میلیون تومان')">8آپشن گروه حقیقی ۸: پایان‌نامه <div class="badge badge-green">شهریه ۱ میلیون تومان</div></button>
+    <button class="card-btn" onclick="selectGroup('رساله', '۱ میلیون تومان')">9آپشن گروه حقیقی ۹: رساله <div class="badge badge-green">شهریه ۱ میلیون تومان</div></button>
+  </div>
+</div>
 
+<!-- پنل ۲: منبع ورودی -->
+<div id="modPanel" class="panel">
+  <div class="panel-title">۲. انتخاب منبع دریافت محتوا یا سؤال</div>
+  <div class="grid-cards">
+    <button class="card-btn" onclick="selectSource('عکس از گالری')">▧ آپشن عکس از گالری (بارگذاری تصویر سوال)</button>
+    <button class="card-btn" onclick="selectSource('فایل صوتی')">♫ آپشن فایل صوتی (بارگذاری صوت یا گفتار)</button>
+    <button class="card-btn" onclick="selectSource('متن تایپ‌شده')">✎ آپشن متن تایپ‌شده (تایپ یا پیست متن)</button>
+  </div>
+  <textarea id="inputText" placeholder="متن سؤال، تمرین یا محتوای درسی را اینجا بنویسید یا الصاق کنید..."></textarea>
+  <div class="btn-group">
+    <button class="btn btn-primary" onclick="proceedToRoute()">تأیید و ادامه مسیر ←</button>
+  </div>
+</div>
 
-<section class="glass tracker" aria-label="مسیر انتخاب"><div class="track"><b>گروه انتخابی</b><span id="tGroup">هنوز انتخاب نشده</span></div><div class="track"><b>منبع / زیرگروه</b><span id="tSub">هنوز انتخاب نشده</span></div><div class="track"><b>عملیات آنالیز</b><span id="tOp">هنوز انتخاب نشده</span></div><div class="track"><b>سطح تحصیلی</b><span id="tLevel">هنوز انتخاب نشده</span></div></section>
-<section class="glass section" id="prefPanel" aria-labelledby="prefHeading">
-<h2 id="prefHeading">انتخاب کن:</h2>
-<p class="hint">یکی از سه گزینه زیر را تیک بزنید تا سریع به مسیر مورد نظر وصل شوید.</p>
-<div class="pref-grid">
-<label class="pref-opt"><input type="radio" name="prefMode" value="1"><span>میخواهم فقط پاسخ را ببینم و کپی کنم چون میخوام فقط پاسخ را برای مدرس ارسال کنم و نمیخواهم وارد جزئیات تجزیه تحلیل،موشکافی و آنالیز توسط هوش مصنوعی AI.AI شوم!</span></label>
-<label class="pref-opt"><input type="radio" name="prefMode" value="2"><span>میخواهم هم پاسخ را ببینم و هم وارد جزئیات تجزیه تحلیل،موشکافی و آنالیز  توسط هوش مصنوعی AI.AI شوم!</span></label>
-<label class="pref-opt"><input type="radio" name="prefMode" value="3"><span>میخواهم فقط وارد جزئیات تجزیه تحلیل،موشکافی و آنالیز  توسط هوش مصنوعی AI.AI شوم!</span></label>
-</div></section>
-<section class="glass section" id="groupsPanel"><h2>۱. انتخاب گروه حقیقی</h2><p class="hint">یک حوزهٔ یادگیری را انتخاب کنید تا مسیر متناسب آن باز شود.</p><div class="grid" id="groups"></div></section>
-<section class="glass section hidden" id="modPanel"><h2>۲. انتخاب گروه مجازی</h2><p class="hint">منبع دریافت سؤال یا پاسخ را انتخاب کنید.</p><div class="grid" id="modalities"></div><div id="sourceArea"></div></section>
-<section class="glass section hidden" id="routePanel" aria-labelledby="routeHeading">
-<h2 id="routeHeading">انتخاب مسیر پاسخ</h2>
-<div class="path-grid">
-  <article class="path-card" aria-labelledby="directPathHeading">
-    <h3 id="directPathHeading">بخش اول: بخش پاسخ بدون آنالیز</h3>
-    <p>آپشن بدون آنالیز؛ پاسخ را مستقیم دریافت کنید و نیازی به رفتن به زیرگروه، عملیات و سطح تحصیلی نیست.</p>
-    <div class="path-actions">
-      <button class="action" id="directText" type="button">آپشن پاسخ بصورت نوشتاری</button>
-      <button class="action" id="directAudio" type="button">آپشن پاسخ بصورت شنیداری (برای خسته نشدن چشم این پاسخ بصورت شنیداری ارائه میشود)</button>
+<!-- پنل ۳: انتخاب مسیر پاسخ -->
+<div id="routePanel" class="panel">
+  <div class="panel-title">انتخاب مسیر دریافت پاسخ</div>
+  <div style="background:#0b0f19;border:1px solid #334155;padding:14px;border-radius:12px;margin-bottom:12px">
+    <h3 style="color:#38bdf8;margin-bottom:8px">بخش اول: دریافت مستقیم بدون آنالیز</h3>
+    <div class="btn-group">
+      <button class="btn" onclick="runDirect('نوشتاری')">آپشن پاسخ بصورت نوشتاری</button>
+      <button class="btn" onclick="runDirect('شنیداری')">آپشن پاسخ بصورت شنیداری (جهت خسته نشدن چشم)</button>
     </div>
-  </article>
-  <button class="path-card analysis-path" id="analysisPath" type="button" aria-pressed="false">
-    <h3>بخش دوم: بخش پاسخ با آنالیز</h3>
-    <p>که محصل رو درگیر آنالیز میکند؛ ادامه به زیرگروه، عملیات و سطح تحصیلی.</p>
-    <span class="path-link">ورود به مسیر آنالیز ←</span>
-  </button>
-</div></section>
-<section class="glass section hidden" id="subPanel"><h2>۳. انتخاب زیرگروه</h2><p class="hint">آنالیز سؤال یا آنالیز پاسخِ استخراج‌شده از منبع انتخابی.</p><div class="subgrid" id="subgroups"></div></section>
-<section class="glass section hidden" id="opsPanel"><h2>۴. انتخاب یکی از ۱۳ عملیات</h2><p class="hint">عملیات را متناسب با هدف تمرین انتخاب کنید.</p><div class="ops" id="operations"></div></section>
-<section class="glass section hidden" id="levelsPanel"><h2>۵. انتخاب سطح تحصیلی و نوع پاسخ</h2><p class="hint">برای هر سطح، هر دو گزینهٔ نوشتاری و شنیداری در دسترس است.</p><div class="levels" id="levels"></div></section>
-
-<section class="glass output" id="outputPanel" aria-live="polite"><h2>پاسخ / وضعیت</h2><div class="status" id="status">برای شروع، یکی از گروه‌های حقیقی را انتخاب کنید.</div><div class="result hidden" id="result"></div><div class="tools" aria-label="ابزارهای همیشگی پاسخ"><button class="secondary" id="clearResult" type="button">آپشن 🧹 دکمه برای پاک کردن</button><button class="secondary" id="copyResult" type="button">آپشن 📋 دکمه برای کپی کردن</button><button class="secondary" id="saveText" type="button">آپشن 💾 ذخیرهٔ پاسخ نوشتاری (.txt)</button><button class="secondary" id="saveAudio" type="button">آپشن 🔊 ذخیرهٔ پاسخ شنیداری (فایل صوتی)</button><button class="secondary hidden" id="stopSpeech" type="button">آپشن توقف خواندن</button></div></section><footer>AI.AI • سامانهٔ یادگیری و تحلیل آموزشی</footer>
-<section class="card" style="margin-top:28px;border-color:rgba(255,42,95,0.4);background:rgba(20,20,30,0.85);box-shadow:0 0 25px rgba(255,42,95,0.15);">
-  <h2 style="font-size:1.35rem;color:var(--neon-red);margin-bottom:12px;display:flex;align-items:center;gap:10px"><span>💳</span> روش خرید بسته و پرداخت آفلاین</h2>
-  <div style="background:rgba(255,42,95,0.1);border-right:4px solid var(--neon-red);padding:14px;border-radius:8px;margin-bottom:20px;line-height:1.8;color:#ffebee"><strong style="color:var(--neon-red);font-size:1rem">⚠️ توجه مهم:</strong> بدلیل تقلب و سوء استفاده در پرداختهای الکترونیکی ؛از پرداخت الکترونیکی معذوریم! از اینرو تنها روش خرید؛ آفلاین و ارسال رسید به ایمیل است !</div>
-  <p style="font-size:0.95rem;color:var(--text-secondary);line-height:1.7;margin-bottom:20px">لطفاً یکی از بسته‌های اعتباری زیر را انتخاب فرمایید و پس از واریز به شماره کارت، تصویر فیش را جهت فعال‌سازی به ایمیل شرکت ارسال نمایید:</p>
-  <div style="background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.4);border-radius:12px;padding:14px 18px;margin-bottom:20px;line-height:1.9;color:#d1fae5;font-size:0.95rem;text-align:justify">بسته ها تاریخ انقضا ندارند و بشرط میزان موجودی اعتبارتان،میتوانید استفاده نامحدود از بسته خریداری شده خود کنید !<br>بعبارتی دیگر:<br>اگر مدتی از بسته ی خریداری شده استفاده نکنید ؛اعتبارتان نزد ما محفوظ میماند و هرگز منقضی نمیشود یعنی هنوز هم میتوانید از بسته خریداری شده خود  بهره ببرید!</div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:24px">
-    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:18px;text-align:center"><div style="font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:8px">بسته ۱۰ میلیون تومانی</div><div style="display:inline-block;background:rgba(255,42,95,0.2);color:#ff7597;padding:4px 12px;border-radius:20px;font-size:0.85rem;font-weight:700">ویژه دانش آموز-پشت کنکور-دانشجو</div><div style="display:grid;gap:8px;margin-top:14px"></div></div>
-    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:18px;text-align:center"><div style="font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:8px">بسته ۲۵۰ میلیون تومانی</div><div style="display:inline-block;background:rgba(0,229,255,0.2);color:#38bdf8;padding:4px 12px;border-radius:20px;font-size:0.85rem;font-weight:700">ویژه مدرسه-موسسه کنکوری-دانشگاه</div><div style="display:grid;gap:8px;margin-top:14px"></div></div>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:20px">
-    <div style="background:rgba(0,0,0,0.4);border:1px dashed rgba(255,255,255,0.2);border-radius:12px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;gap:12px"><div><div style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:4px">شماره کارت بانکی (بانک ملی - به نام حسین لعلیان)</div><div id="card-number" style="font-size:1.3rem;font-family:monospace;font-weight:800;letter-spacing:2px;color:#38bdf8;direction:ltr;text-align:center">6037991555549678</div></div><button type="button" onclick="copyPaymentText('6037991555549678','شماره کارت ۶۰۳۷۹۹۱۵۵۵۵۴۹۶۷۸')" style="background:rgba(56,189,248,0.15);border:1px solid #38bdf8;color:#38bdf8;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:700;font-size:0.85rem">آپشن 📋 کپی کردن شماره کارت</button></div>
-    <div style="background:rgba(0,0,0,0.4);border:1px dashed rgba(255,255,255,0.2);border-radius:12px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;gap:12px"><div><div style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:4px">ایمیل پشتیبانی و ارسال فیش واریزی</div><div id="support-email" style="font-size:1rem;font-family:monospace;font-weight:700;color:#34d399;direction:ltr;text-align:center">Ai.Algorithms.Ballistics@gmail.com</div></div><button type="button" onclick="copyPaymentText('Ai.Algorithms.Ballistics@gmail.com','ایمیل پشتیبانی')" style="background:rgba(52,211,153,0.15);border:1px solid #34d399;color:#34d399;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:700;font-size:0.85rem">آپشن 📋 کپی کردن ایمیل پشتیبانی</button></div>
+  <div style="background:#0b0f19;border:1px solid #334155;padding:14px;border-radius:12px">
+    <h3 style="color:#f43f5e;margin-bottom:8px">بخش دوم: ورود به مسیر آنالیز، تشریح و تله‌ها</h3>
+    <button class="btn btn-primary" onclick="openSubPanel()">ورود به مسیر آنالیز ←</button>
   </div>
-  <div style="text-align:center;font-weight:800;color:#fff;font-size:1.05rem;margin:16px 0 8px">شرکت صنایع هوش مصنوعی تهرانیان</div>
-  <div style="background:rgba(255,42,95,0.08);border:1px solid rgba(255,42,95,0.3);border-radius:8px;padding:10px 14px;font-size:0.82rem;color:#fca5a5;text-align:center;line-height:1.6">⚖️ <strong>اخطار امنیتی:</strong> هر گونه کپی برداری غیرقانونی و سوء استفاده از این پلتفرم دارایی فکری شرکت صنایع هوش مصنوعی تهرانیان پیگرد قانونی دارد!</div>
-</section>
+</div>
 
-<div id="universalNavigation" role="region" aria-label="بازگشت در مسیر" style="position:fixed;z-index:9000;bottom:14px;left:14px;display:flex;gap:8px"><button type="button" id="cancelBackButton" class="secondary" aria-label="لغو یا بازگشت به مرحله قبل">آپشن ↩ لغو / بازگشت به مرحله قبل</button></div>
-</main>
+<!-- پنل ۴: زیرگروه‌ها -->
+<div id="subPanel" class="panel">
+  <div class="panel-title">۳. انتخاب زیرگروه</div>
+  <div class="grid-cards">
+    <button class="card-btn" onclick="selectSub('آنالیز سؤال')">1آپشن آنالیز سؤال استخراج‌شده</button>
+    <button class="card-btn" onclick="selectSub('آنالیز پاسخ')">2آپشن آنالیز پاسخ استخراج‌شده</button>
+  </div>
+</div>
+
+<!-- پنل ۵: عملیات‌ها -->
+<div id="opsPanel" class="panel">
+  <div class="panel-title" id="opsTitle">۴. انتخاب یکی از عملیات‌های تحلیلی</div>
+  <div class="grid-cards" id="opsContainer"></div>
+</div>
+
+<!-- پنل ۶: سطوح تحصیلی و آپشنک‌ها -->
+<div id="levelsPanel" class="panel">
+  <div class="panel-title">۵. انتخاب سطح تحصیلی و نوع پاسخ</div>
+  <div class="grid-cards" id="levelsContainer"></div>
+</div>
+
+<!-- پنل خروجی -->
+<div id="outputPanel" class="panel">
+  <div class="panel-title">پاسخ / وضعیت آنالیز هوش مصنوعی AI.AI</div>
+  <div class="output-box" id="resultBox">در انتظار آغاز عملیات...</div>
+  <div class="btn-group">
+    <button class="btn" onclick="clearOutput()">آپشن 🧹 پاک کردن</button>
+    <button class="btn" onclick="copyOutput()">آپشن 📋 کپی کردن پاسخ</button>
+    <button class="btn" onclick="downloadTxt()">آپشن 💾 ذخیره نوشتاری (.txt)</button>
+    <button class="btn" onclick="speakOutput()">آپشن 🔊 پخش صوتی پاسخ</button>
+    <button class="btn" onclick="stopAudio()">⏹️ توقف صدا</button>
+  </div>
+</div>
+
+<!-- بخش پرداخت آفلاین -->
+<div class="payment-section">
+  <div class="payment-title">💳 روش خرید بسته و پرداخت آفلاین</div>
+  <p style="font-size:0.9rem;color:#fca5a5;margin-bottom:12px">⚠️ توجه مهم: به دلیل سوءاستفاده‌های درگاه‌های پرداخت، پذیرش و فعال‌سازی فقط به‌صورت آفلاین و کارت‌به‌کارت انجام می‌پذیرد.</p>
+  <div class="grid-cards" style="margin-bottom:12px">
+    <div style="background:#080d1a;padding:12px;border-radius:10px;border:1px solid #475569">
+      <strong>بسته ۱۰ میلیون تومانی</strong>
+      <p style="font-size:0.8rem;color:var(--muted)">ویژه دانش‌آموز - پشت کنکور - دانشجو</p>
+    </div>
+    <div style="background:#080d1a;padding:12px;border-radius:10px;border:1px solid #475569">
+      <strong>بسته ۲۵۰ میلیون تومانی</strong>
+      <p style="font-size:0.8rem;color:var(--muted)">ویژه مدرسه - مؤسسه کنکوری - دانشگاه</p>
+    </div>
+  </div>
+  <div>شماره کارت بانکی (بانک ملی - به نام حسین لعلیان):</div>
+  <div class="card-number-box" id="cardNum">6037991555549678</div>
+  <button class="btn" onclick="copyText('6037991555549678')">آپشن 📋 کپی کردن شماره کارت</button>
+  
+  <div style="margin-top:14px">ایمیل پشتیبانی و ارسال فیش واریزی:</div>
+  <div style="color:#38bdf8;font-weight:700;margin:6px 0" id="mailTxt">Ai.Algorithms.Ballistics@gmail.com</div>
+  <button class="btn" onclick="copyText('Ai.Algorithms.Ballistics@gmail.com')">آپشن 📋 کپی کردن ایمیل پشتیبانی</button>
+  <p style="font-size:0.8rem;color:var(--muted);margin-top:12px">⚖️ اخطار امنیتی: هرگونه کپی‌برداری غیرقانونی پیگرد قانونی دارد.</p>
+</div>
+
+<button id="backBtn" class="fixed-back" onclick="goBack()">آپشن ↩ لغو / بازگشت به مرحله قبل</button>
+
+</div>
 
 <script>
-'use strict';
-const groups=['سؤال و پاسخ درسی','کنفرانس','تحقیق','پروژه','انشا','املا','مقاله','پایان‌نامه','رساله'];
-const modalities=[['photo','عکس از گالری','بارگذاری تصویر سؤال یا پاسخ'],['audio','فایل صوتی','بارگذاری صوت یا ضبط گفتار'],['text','متن تایپ‌شده','نوشتن یا جای‌گذاری متن']];
-const operations=['نکات کلیدی','تحلیل سقراطی','چهارگزینه‌ای','جای خالی','صحیح/غلط','بله/خیر','وصل‌کردنی','اشاره‌ای/راهنمایی','تشریحی و گام‌به‌گام','بازطراحی و سؤال مشابه','درس‌نامه و فرمول‌ها','زمان‌سنجی و راهبرد','دام‌ها/خطاهای رایج'];
-const dictationOperations=['کلمات املای کلیدی','این کلمه املایی به چه اشاره دارد؟','املای چهارگزینه‌ای','کلمه املایی جایش خالی شده','املای کلمه صحیح/غلط بر اساس معنا','املای کلمه صحیح/غلط بر اساس املا','املای کلمه به‌صورت بله/خیر','املای کلمه وصل‌کردنی','کلمه‌ای مشابه این کلمه املایی','کلمه بدون نقطه','کلمه یک نقطه‌ای','کلمه دو نقطه‌ای','کلمه ۳ نقطه‌ای','کلمه ۴ نقطه‌ای','کلمه ۵ نقطه‌ای','زمان‌سنجی کردن کلمه املایی','دام‌ها/خطاهای رایج کلمه املایی','کلمه املایی با ح','کلمه املایی با ه','کلمه املایی با ق','کلمه املایی با ث','کلمه املایی با ص','کلمه املایی با آ','کلمه املایی با ا','کلمه املایی با س','کلمه املایی با ز','کلمه املایی با ژ','کلمه املایی با ذ','کلمه املایی با ط','کلمه املایی با ظ','کلمه املایی با ض','کلمه املایی با غ','کلمه املایی با ع','کلمه املایی با ت','کلمه املایی با ئ','کلمه املایی با ء'];
-function getOperations(){return state.group==='املا'?dictationOperations:operations;}
-const levels=['دانش‌آموز ابتدایی','دانش‌آموز متوسطه اول','دانش‌آموز متوسطه دوم','آماده کنکور','دانش‌آموز تیزهوشان','دانش‌آموز المپیاد','دانشجوی لیسانس','دانشجوی فوق‌لیسانس','دانشجوی دکتری'];
-const optks=['آپشنک آنالیزوری گام به گام دروس ابتدایی تا دکتری','آپشنک پشتیبانی از چند زبان دنیا','آپشنک استخراج کننده مفاهیم کلیدی','آپشنک تله و دامها و خطاهای پر تکرار','آپشنک مشاوره و بهینه سازی و ارتقاء مسیر موفقیت تحصیلی','آپشنک جمع بندی نکات دروس','آپشنک خلاصه دروس هر سطح'];
-const $=id=>document.getElementById(id);let state={group:null,mod:null,route:null,sub:null,op:null,level:null,optks:[],optksByLevel:{},image:null,audio:null,transcript:''},audioUrl=null;
-let clickCtx=null;function playSynthesizedSound(){try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;clickCtx=clickCtx||new AC();if(clickCtx.state==='suspended')clickCtx.resume();const o=clickCtx.createOscillator(),g=clickCtx.createGain(),t=clickCtx.currentTime;o.type='sine';o.frequency.setValueAtTime(740,t);o.frequency.exponentialRampToValueAtTime(520,t+.065);g.gain.setValueAtTime(.045,t);g.gain.exponentialRampToValueAtTime(.001,t+.085);o.connect(g);g.connect(clickCtx.destination);o.start(t);o.stop(t+.09)}catch(e){}}document.addEventListener('click',e=>{if(e.target.closest('button,summary,input[type=file]'))playSynthesizedSound()},true);document.addEventListener('change',e=>{if(e.target.matches('input[type=checkbox]'))playSynthesizedSound()},true);document.querySelectorAll('details>summary').forEach(summary=>summary.addEventListener('click',e=>{e.preventDefault();const d=summary.parentElement;d.open=!d.open}));
-function scrollTo(id){setTimeout(()=>$(id).scrollIntoView({behavior:'smooth',block:'start'}),80)}function show(id,on=true){$(id).classList.toggle('hidden',!on)}function badge(el,yes){el.classList.toggle('selected',yes);el.setAttribute('aria-pressed',yes?'true':'false');let b=el.querySelector('.badge');if(yes&&!b){b=document.createElement('span');b.className='badge';b.textContent='انتخاب شد';el.appendChild(b)}else if(!yes&&b)b.remove()}
-function status(msg,err=false){const text=String(msg);const unsafe=/(?:\bHTTP\s*\d{3}\b|invalid\s*token|\btoken\b|توکن|گپ\s*جی\s*پی\s*تی|gapgpt|\bapi\b|کلید|request\s*id|\b(?:401|403|5\d\d)\b)/i.test(text);$('status').textContent=unsafe?'پاسخ برخط در دسترس نیست؛ لطفاً اتصال اینترنت خود را بررسی کنید یا مجدداً تلاش نمایید.':text;$('status').classList.toggle('error',err||unsafe)}function outputTools(on){}function resetOutput(){show('result',false);$('result').textContent='';outputTools(false);$('stopSpeech').classList.add('hidden');window.speechSynthesis?.cancel()}
-function updateTracker(){$('tGroup').textContent=state.group??'هنوز انتخاب نشده';$('tSub').textContent=state.route==='direct'?'بخش اول: پاسخ بدون آنالیز':(state.sub?(state.modalityName+' • '+state.sub):'هنوز انتخاب نشده');$('tOp').textContent=state.op??'هنوز انتخاب نشده';$('tLevel').textContent=state.level??'هنوز انتخاب نشده';for(let id of ['tGroup','tSub','tOp','tLevel'])$(id).classList.toggle('on',!$(id).textContent.includes('هنوز'))}
-function clearAfterGroup(){state.mod=null;state.route=null;state.sub=null;state.op=null;state.level=null;state.optks=[];state.optksByLevel={};state.image=null;state.audio=null;state.transcript='';show('routePanel',false);show('subPanel',false);show('opsPanel',false);show('levelsPanel',false);$('sourceArea').innerHTML='';resetOutput();updateTracker()}
-/* ==== منطق کارت انتخاب کن ==== */
-state.pref=null;let prefDirectTimer=null,prefDirectStarted='';
-function startPreferredDirect(){
- if(state.pref!=='1'||!state.group||!state.mod)return;
- const hasInput=!!(state.transcript.trim()||state.image||state.audio);
- if(!hasInput)return;
- clearTimeout(prefDirectTimer);
- prefDirectTimer=setTimeout(()=>{const sig=state.group+'|'+state.mod+'|'+state.transcript+'|'+(state.image?.name||'')+'|'+(state.audio?.name||'');if(sig===prefDirectStarted)return;prefDirectStarted=sig;runDirectAnswer('text')},700);
-}
-function applyPref(v){
- state.pref=v;
- document.querySelectorAll('#prefPanel .pref-opt').forEach(l=>{
-  const on=l.querySelector('input').value===v;
-  l.classList.toggle('selected',on);l.querySelector('input').checked=on;
- });
- if(v==='1'){state.route='direct';show('routePanel');show('subPanel',false);status('گزینه ۱ انتخاب شد: مسیر مستقیم پاسخ بدون آنالیز فعال شد؛ گروه حقیقی و منبع را انتخاب کنید.');}
- else if(v==='2'){state.route=null;status('گزینه ۲ انتخاب شد: هم پاسخ و هم آنالیز؛ مسیر کامل ادامه می‌یابد.');}
- else {state.route='analysis';status('گزینه ۳ انتخاب شد: مسیر کامل آنالیز فعال شد؛ گروه حقیقی و منبع را انتخاب کنید.');}
- updateTracker();
- setTimeout(()=>document.getElementById('groupsPanel').scrollIntoView({behavior:'smooth',block:'start'}),80);
-}
-document.querySelectorAll('#prefPanel .pref-opt input').forEach(inp=>{
- inp.addEventListener('change',()=>{if(inp.checked)applyPref(inp.value)});
-});
-groups.forEach((name,i)=>{let b=document.createElement('button');b.type='button';b.className='card';b.setAttribute('aria-pressed','false');b.innerHTML=`<span class="num">${i+1}</span><strong>آپشن گروه حقیقی ${i+1}</strong><small>${name}</small>`;b.onclick=()=>{clearAfterGroup();state.group=name;document.querySelectorAll('#groups .card').forEach(x=>badge(x,x===b));show('modPanel');$('modalities').innerHTML='';modalities.forEach(([id,label,desc])=>{let m=document.createElement('button');m.type='button';m.className='card modcard';m.setAttribute('aria-pressed','false');m.innerHTML=`<span class="num">${id==='photo'?'▧':id==='audio'?'♫':'✎'}</span><strong>آپشن ${label}</strong><small>${desc}</small>`;m.onclick=()=>chooseMod(id,label,m);$('modalities').appendChild(m)});status('گروه «'+name+'» انتخاب شد؛ اکنون منبع را انتخاب کنید.');updateTracker();scrollTo('modPanel')};$('groups').appendChild(b)});
-function chooseMod(id,label,el){
- state.mod=id;state.modalityName=label;state.route=null;state.sub=null;state.op=null;state.level=null;state.optks=[];state.optksByLevel={};state.image=null;state.audio=null;state.transcript='';
- document.querySelectorAll('#modalities .card').forEach(x=>badge(x,x===el));
- show('routePanel');show('subPanel',false);show('opsPanel',false);show('levelsPanel',false);resetOutput();buildSource();
- const src=id==='photo'?'عکس':id==='audio'?'فایل صوتی':'متن تایپ‌شده';
- if(id==='text'){setTimeout(()=>{const tb=document.getElementById('typedText');if(tb){tb.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>{try{tb.focus({preventScroll:true})}catch(e){tb.focus()}},450)}},120)}
- $('subgroups').innerHTML='';['سؤال','پاسخ'].forEach((q,i)=>{let text=`آنالیز ${q} استخراج‌شده از ${src}`,b=document.createElement('button');b.type='button';b.className='card';b.setAttribute('aria-pressed','false');b.innerHTML=`<span class="num">${i+1}</span><strong>آپشن ${text}</strong><small>گروه حقیقی ${groups.indexOf(state.group)+1} • ${state.group}</small>`;b.onclick=()=>chooseSub(q,text,b);$('subgroups').appendChild(b)});
- $('directText').onclick=()=>runDirectAnswer('text');$('directAudio').onclick=()=>runDirectAnswer('audio');$('analysisPath').onclick=chooseAnalysisPath;
- updateTracker();
- if(state.pref==='1'){status('منبع انتخاب شد؛ محتوای سؤال یا پاسخ را وارد/بارگذاری کنید تا پاسخ مستقیم آماده شود.');scrollTo('sourceArea');return}
- if(state.pref==='3'){chooseAnalysisPath();return}
- status('منبع «'+label+'» انتخاب شد؛ مسیر پاسخ را انتخاب کنید.');scrollTo('routePanel')
- }
-function chooseAnalysisPath(){
- state.route='analysis';state.sub=null;state.op=null;state.level=null;state.optks=[];state.optksByLevel={};
- $('analysisPath').setAttribute('aria-pressed','true');show('subPanel');show('opsPanel',false);show('levelsPanel',false);updateTracker();status('بخش دوم انتخاب شد؛ زیرگروه سؤال یا پاسخ را برگزینید.');scrollTo('subPanel')
-}
-function generateDirectPrompt(){
- const group=state.group||'یادگیری درسی',input=getInput();
- const goal=state.transcript.trim()?`متن یا پاسخ ارائه‌شده را مبنا قرار بده و پاسخ نهایی مناسب درخواست را مستقیم ارائه کن؛ اگر متن، پیش‌نویس پاسخ است آن را اصلاح و کامل کن.`:'درخواست را مستقیم پاسخ بده. اگر محتوای منبع به‌دلیل محدودیت مرورگر قابل خواندن نیست، این را شفاف بگو و فقط اطلاعات لازم را از کاربر بخواه؛ محتوای تصویر یا صوت را حدس نزن.';
- return `پاسخ مستقیم آموزشی به زبان فارسی
+const S = { group:'', fee:'', source:'', sub:'', op:'', level:'', pref:0, history:['prefPanel'] };
+const generalOps = ['نکات کلیدی','تحلیل سقراطی','چهارگزینه‌ای','جای خالی','صحیح/غلط','بله/خیر','وصل‌کردنی','اشاره‌ای/راهنمایی','تشریحی و گام‌به‌گام','بازطراحی و سؤال مشابه','درس‌نامه و فرمول‌ها','زمان‌سنجی و راهبرد','دام‌ها/خطاهای رایج'];
+const levelsList = ['دانش‌آموز ابتدایی','دانش‌آموز متوسطه اول','دانش‌آموز متوسطه دوم','آماده کنکور','تیزهوشان','المپیاد','دانشجوی لیسانس','دانشجوی فوق‌لیسانس','دانشجوی دکتری'];
 
-گروه حقیقی: ${group}
-منبع انتخاب‌شده: ${state.modalityName||'تعیین نشده'}
-اطلاعات منبع: ${input}
+function showPanel(id){
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(S.history[S.history.length-1] !== id) S.history.push(id);
+  document.getElementById('backBtn').style.display = S.history.length > 1 ? 'block' : 'none';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
 
-دستور: ${goal} پاسخ را روشن، دقیق و متناسب با گروه انتخابی بنویس. نتیجه را مستقیم و بدون تحلیل فرایند، مراحل آنالیز، زیرگروه، عملیات، سطح تحصیلی، تمرین یا ارزیابی ارائه کن. اگر سؤال مبهم یا اطلاعات ناکافی است، کوتاه و مشخص سؤال روشن‌کننده بپرس. از ساختن واقعیت، نقل‌قول یا محتوای ندیده خودداری کن.`
-}
-async function runDirectAnswer(mode){
- if(!state.group||!state.mod){status('ابتدا گروه حقیقی و منبع را انتخاب کنید.',true);return}
- state.route='direct';state.sub=null;state.op=null;state.level=null;state.optks=[];state.outputMode=mode;updateTracker();resetOutput();show('result');scrollTo('outputPanel');
- const prompt=generateDirectPrompt(),requestId=(window.__aiRequestId||0)+1;window.__aiRequestId=requestId;
- $('result').textContent='در حال آماده‌سازی پاسخ مستقیم…';status('بخش اول: در حال دریافت پاسخ مستقیم بدون آنالیز…');
- try{const answer=await requestLiveAI(prompt);if(requestId!==window.__aiRequestId)return;$('result').textContent=answer;status('پاسخ مستقیم آماده شد؛ مراحل آنالیز اجرا نشد.');if(mode==='audio')speak(answer)}
- catch(e){if(requestId!==window.__aiRequestId)return;$('result').textContent='پاسخ برخط در دسترس نیست؛ لطفاً اتصال اینترنت خود را بررسی کنید یا مجدداً تلاش نمایید.';status('پاسخ برخط در دسترس نیست؛ لطفاً اتصال اینترنت خود را بررسی کنید یا مجدداً تلاش نمایید.',true)}
-}
-function buildSource(){let a=$('sourceArea');a.innerHTML='<div class="sourcebox" id="sourceBox"></div>';let box=$('sourceBox');if(state.mod==='photo'){box.innerHTML='<label for="imageFile">انتخاب عکس از گالری</label><input id="imageFile" type="file" accept="image/*" aria-label="انتخاب عکس از گالری"><div id="mediaPreview"></div><button class="secondary hidden" id="removeMedia" type="button">آپشن حذف عکس</button>'; $('imageFile').onchange=e=>{let f=e.target.files[0];if(!f)return;if(!f.type.startsWith('image/')){status('لطفاً یک فایل تصویر انتخاب کنید.',true);return}let r=new FileReader();r.onload=()=>{state.image={name:f.name,data:r.result,type:f.type};$('mediaPreview').innerHTML=`<img class="preview" alt="پیش‌نمایش عکس انتخاب‌شده" src="${r.result}">`;show('removeMedia');status('عکس «'+f.name+'» بارگذاری شد.');startPreferredDirect()};r.readAsDataURL(f)};$('removeMedia').onclick=()=>{state.image=null;$('imageFile').value='';$('mediaPreview').innerHTML='';show('removeMedia',false);status('عکس حذف شد.')}}else if(state.mod==='audio'){box.innerHTML='<label for="audioFile">انتخاب فایل صوتی</label><input id="audioFile" type="file" accept="audio/*" aria-label="انتخاب فایل صوتی"><div id="mediaPreview"></div><button class="secondary hidden" id="removeMedia" type="button">آپشن حذف فایل صوتی</button><p class="note">برای تحلیل دقیق محتوای صوت، متن پیاده‌سازی‌شده را در کادر زیر وارد کنید. اگر مرورگر شما گفتار فارسی را پشتیبانی کند، می‌توانید از ضبط و پیاده‌سازی گفتار کمک بگیرید.</p><button class="secondary" id="micBtn" type="button">آپشن شروع ضبط / رونویسی با میکروفون</button><p class="toast" id="micInfo">رونویسی میکروفون وابسته به پشتیبانی مرورگر و مجوز کاربر است.</p><label for="transcript">متن رونویسی‌شده / متن کمکی (اختیاری)</label><textarea id="transcript" placeholder="در صورت نیاز متن را اینجا وارد یا اصلاح کنید"></textarea>'; $('audioFile').onchange=e=>{let f=e.target.files[0];if(!f)return;if(audioUrl)URL.revokeObjectURL(audioUrl);audioUrl=URL.createObjectURL(f);state.audio={name:f.name,type:f.type};$('mediaPreview').innerHTML=`<audio class="audio-player" controls aria-label="پخش پیش‌نمایش فایل صوتی" src="${audioUrl}"></audio>`;show('removeMedia');status('فایل صوتی «'+f.name+'» آمادهٔ پیش‌نمایش است؛ این فایل به‌عنوان متن رونویسی‌شده ارسال نمی‌شود.')};$('removeMedia').onclick=()=>{state.audio=null;if(audioUrl)URL.revokeObjectURL(audioUrl);audioUrl=null;$('audioFile').value='';$('mediaPreview').innerHTML='';show('removeMedia',false);status('فایل صوتی حذف شد.')};$('transcript').oninput=e=>{state.transcript=e.target.value;startPreferredDirect()};$('micBtn').onclick=startMic}else{box.innerHTML='<label for="typedText">متن سؤال، پاسخ یا محتوای مورد تحلیل</label><textarea id="typedText" placeholder="متن را اینجا تایپ یا جای‌گذاری کنید…"></textarea>'; $('typedText').oninput=e=>{state.transcript=e.target.value;startPreferredDirect()}}}
-function startMic(){let SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){$('micInfo').textContent='قابلیت تشخیص گفتار در این مرورگر فعال نیست. لطفاً متن را دستی وارد کنید یا فایل صوتی بارگذاری کنید.';return}let rec=new SR();rec.lang='fa-IR';rec.interimResults=false;rec.onstart=()=>{$('micInfo').textContent='در حال شنیدن… برای پایان، دکمهٔ توقف مرورگر را بزنید.'};rec.onresult=e=>{let t=e.results[0][0].transcript;state.transcript+= (state.transcript?'\n':'')+t;$('transcript').value=state.transcript;$('micInfo').textContent='رونویسی مرورگر تکمیل شد؛ متن را بازبینی کنید.'};rec.onerror=()=> $('micInfo').textContent='ضبط صدا در دسترس نیست؛ لطفاً مجوز میکروفون را بررسی کنید.';rec.onend=()=>{$('micInfo').textContent+=' ضبط پایان یافت.'};try{rec.start()}catch(e){$('micInfo').textContent='شروع میکروفون ممکن نشد؛ مجوز مرورگر را بررسی کنید.'}}
-function chooseSub(q,text,b){state.sub=text;state.op=null;state.level=null;state.optks=[];state.optksByLevel={};document.querySelectorAll('#subgroups .card').forEach(x=>badge(x,x===b));show('opsPanel');show('levelsPanel',false);$('operations').innerHTML='';getOperations().forEach((op,i)=>{let x=document.createElement('button');x.type='button';x.className='op';x.setAttribute('aria-pressed','false');x.innerHTML=`<span class="num">${i+1}</span> آپشن ${op}`;x.onclick=()=>chooseOp(op,x);$('operations').appendChild(x)});updateTracker();status('زیرگروه «'+text+'» انتخاب شد؛ یکی از عملیات این گروه را برگزینید.');scrollTo('opsPanel')}
-function getAllowedLevels(){if(state.group==='املا')return ['پایهٔ اول ابتدایی','پایهٔ دوم ابتدایی','پایهٔ سوم ابتدایی','پایهٔ چهارم ابتدایی','پایهٔ پنجم ابتدایی','پایهٔ ششم ابتدایی'];if(state.group==='انشا')return ['پایهٔ اول ابتدایی','پایهٔ دوم ابتدایی','پایهٔ سوم ابتدایی','پایهٔ چهارم ابتدایی','پایهٔ پنجم ابتدایی','پایهٔ ششم ابتدایی'];if(state.group==='پایان‌نامه')return ['دانشجوی فوق‌لیسانس'];if(state.group==='رساله')return ['دانشجوی دکتری'];return levels} function chooseOp(op,el){state.op=op;state.level=null;state.optks=[];state.optksByLevel={};document.querySelectorAll('#operations .op').forEach(x=>{x.classList.toggle('selected',x===el);x.setAttribute('aria-pressed',x===el?'true':'false')});show('levelsPanel');$('levels').innerHTML='';getAllowedLevels().forEach(level=>{let d=document.createElement('div');d.className='level';d.innerHTML=`<strong>آپشن ${level}</strong><div class="actions"><button type="button" class="action" data-mode="text">آپشن نوشتاری</button><button type="button" class="action" data-mode="audio">آپشن شنیداری</button></div><div class="optkgrid" data-optkgrid="1">آپشنک‌های این سطح (اختیاری — برای هر دو آپشن نوشتاری و شنیداری اعمال می‌شود):</div>`;d.querySelectorAll('.actions button').forEach(btn=>btn.onclick=()=>runRequest(level,btn.dataset.mode,d));optks.forEach((ok,oi)=>{let lb=document.createElement('label');lb.className='optk';lb.innerHTML=`<input type="checkbox" data-optk="${oi}"><span>${ok}</span>`;let cb=lb.querySelector('input');cb.checked=(state.optksByLevel[level]||[]).includes(ok);lb.classList.toggle('selected',cb.checked);cb.onchange=()=>{let selected=new Set(state.optksByLevel[level]||[]);if(cb.checked)selected.add(ok);else selected.delete(ok);state.optksByLevel[level]=Array.from(selected);if(state.level===level)state.optks=state.optksByLevel[level].slice();lb.classList.toggle('selected',cb.checked);updateTracker()};d.querySelector('[data-optkgrid]').appendChild(lb)});$('levels').appendChild(d)});updateTracker();status('عملیات «'+op+'» انتخاب شد؛ سطح تحصیلی و نوع پاسخ را انتخاب کنید.');scrollTo('levelsPanel')}
-function getInput(){if(state.mod==='photo')return state.image?`تصویر پیوست: ${state.image.name}.`:'هیچ تصویری انتخاب نشده است.';if(state.mod==='audio')return `فایل صوتی انتخاب‌شده: ${state.audio?.name||'هیچ فایلی انتخاب نشده'}. محتوای گفتاری از خود فایل در این مرورگر استخراج نشده؛ متن کمکی/پیاده‌سازی کاربر: ${state.transcript||'ارائه نشده'}`;return state.transcript||'متنی وارد نشده است.'}
-function generateAnalysis(){
- const text=(state.mod==='text'||state.mod==='audio'?state.transcript:'').trim();
- const source=state.mod==='photo'?(state.image?`تصویر «${state.image.name}» انتخاب شده است؛ مرورگر به‌تنهایی محتوای دیداری تصویر را به متن تبدیل نمی‌کند.`:'تصویری انتخاب نشده است.'):(state.mod==='audio'?(state.audio?`فایل صوتی «${state.audio.name}» انتخاب شده است؛ برای تحلیل دقیق گفتار، متن پیاده‌سازی‌شده را نیز وارد کنید.`:'فایل صوتی انتخاب نشده است.'):'متن تایپ‌شده');
- const grade=state.level||'سطح نامشخص',group=state.group||'یادگیری درسی',sub=state.sub||'سؤال',op=state.op||'تحلیل آموزشی';
- const levelNote=grade.includes('ابتدایی')?'با جمله‌های کوتاه، واژه‌های ساده، مثال ملموس و یک تمرین کوچک پیش بروید.':grade.includes('متوسطه اول')?'مفهوم را با مثال روزمره روشن کنید و سپس دلیل هر گام را بخواهید.':grade.includes('متوسطه دوم')?'تعریف دقیق، رابطهٔ علت و معلولی و پیوند مفاهیم را برجسته کنید.':grade.includes('تیزهوشان')?'علاوه بر راه‌حل پایه، یک راه‌حل دوم و پرسش استدلالی چالشی اضافه کنید.':grade.includes('المپیاد')?'برهان، تعمیم، حالت‌های مرزی و راهبردهای ابتکاری را در کانون تحلیل قرار دهید.':grade.includes('کنکور')?'نکتهٔ پرتکرار، مدیریت زمان، تشخیص دام و حذف گزینه را تمرین کنید.':grade.includes('لیسانس')?'از چارچوب نظری به کاربرد و ارزیابی شواهد حرکت کنید.':grade.includes('فوق‌لیسانس')?'مقایسهٔ رویکردها، نقد روش‌شناختی و محدودیت شواهد را نیز بررسی کنید.':'استدلال مستقل، دقت روش‌شناختی، نقد منابع و امکان پژوهش تازه را مطالبه کنید.';
- const groupNote=group.includes('کنفرانس')?'خروجی را به روایت شفاهی منسجم با آغاز جلب‌توجه‌کننده، بدنهٔ زمان‌بندی‌شده و جمع‌بندی تبدیل کنید.':group.includes('مقاله')?'مقاله را بر اساس رشته، گرایش و موضوع دقیق بسازید و نام مجلات داخلی و خارجی را جداگانه، رشته‌محور و با حوزهٔ موضوعی ذکر کنید. نمونه‌های داخلی برای راستی‌آزمایی در رشته‌های پزشکی و زیست‌پزشکی: Iranian Journal of Medical Sciences، Acta Medica Iranica، Journal of Research in Medical Sciences؛ علوم پایه: Journal of Sciences, Islamic Republic of Iran و Iranian Journal of Science and Technology, Transactions A: Science؛ مهندسی: Iranian Journal of Science and Technology, Transactions of Electrical Engineering و نشریات تخصصی انجمن‌های علمی ایران؛ علوم انسانی و اجتماعی: Iranian Journal of Sociology و نشریات تخصصی پژوهشگاه‌ها و انجمن‌های همان رشته. نمونه‌های خارجیِ رشته‌ای: پزشکی BMJ و The Lancet؛ زیست‌شناسی Nature و Science؛ مهندسی IEEE Transactions (عنوان دقیق زیررشته را مشخص کنید) و ACM Transactions؛ علوم اجتماعی American Sociological Review و علوم انسانی American Historical Review یا Modern Language Journal. این‌ها نمونه‌اند نه پیشنهاد قطعی برای هر موضوع؛ تناسب دامنه، اعتبار/نمایه، ناشر و دستورالعمل نویسندگان را در وبگاه رسمی مجله و پایگاه‌های معتبر بررسی کنید؛ نام یا DOI نسازید و برای رشته‌های دیگر نام‌های دقیقِ تأییدنشده را حدس نزنید.':group.includes('رساله')?'برای رسالهٔ دکتری، موضوع، گرایش و دانشگاهِ دارای برنامهٔ دکتری مرتبط را مشخص کنید و برای هر نام، رشته/گرایش مرتبط و منبع رسمی دانشگاه را بیاورید. فهرست نامزدهای سراسری را با دانشگاه‌های دولتی جامع و تخصصی، صنعتی، علوم پزشکی، پیام‌نور، فرهنگیان، غیرانتفاعی و واحدهای دانشگاه آزاد پوشش دهید؛ از جمله دانشگاه‌های تهران، شهید بهشتی، تربیت مدرس، علامه طباطبایی، الزهرا، خوارزمی، صنعتی شریف، صنعتی امیرکبیر، علم‌وصنعت ایران، خواجه‌نصیرالدین طوسی، فردوسی مشهد، صنعتی اصفهان، اصفهان، شیراز، تبریز، ارومیه، کردستان، بوعلی‌سینا، رازی، گیلان، مازندران، صنعتی نوشیروانی بابل، یزد، سمنان، کاشان، اراک، قم، زنجان، سیستان‌وبلوچستان، شهید باهنر کرمان، هرمزگان، خلیج فارس، بیرجند، شهرکرد، لرستان، ایلام، محقق اردبیلی، صنعتی سهند، صنعتی شاهرود، دانشگاه علوم پزشکی تهران، شهید بهشتی، ایران، مشهد، اصفهان، شیراز و تبریز و دانشگاه آزاد اسلامی (واحدهای دارای رشتهٔ مرتبط). این نام‌ها نمونه‌های مهم‌اند و ادعای فهرست کامل همهٔ مؤسسات/واحدها نیستند: برای پوشش واقعاً سراسری، فهرست روزآمد وزارت علوم/وزارت بهداشت و وبگاه رسمی هر دانشگاه را بررسی و دانشگاه‌های واجد شرایط را با نام دقیق اضافه کنید؛ وجود مقطع یا رشته را جعل نکنید.':group.includes('پایان‌نامه')?'برای پایان‌نامهٔ کارشناسی ارشد، دانشگاه‌هایی را نام ببرید که برنامهٔ ارشدِ همان رشته/گرایش را دارند؛ پایان‌نامه را از رسالهٔ دکتری تفکیک کنید و نام دانشگاه، شهر، گرایش و پیوند/مرجع رسمی را بیاورید. جست‌وجو را در سراسر کشور و میان دانشگاه‌های دولتی جامع و تخصصی، صنعتی، علوم پزشکی، پیام‌نور، فرهنگیان، غیرانتفاعی و واحدهای دانشگاه آزاد انجام دهید؛ نمونه‌های مهم: دانشگاه‌های تهران، شهید بهشتی، تربیت مدرس، علامه طباطبایی، الزهرا، خوارزمی، صنعتی شریف، صنعتی امیرکبیر، علم‌وصنعت ایران، خواجه‌نصیرالدین طوسی، فردوسی مشهد، صنعتی اصفهان، اصفهان، شیراز، تبریز، ارومیه، کردستان، بوعلی‌سینا، رازی، گیلان، مازندران، صنعتی نوشیروانی بابل، یزد، سمنان، کاشان، اراک، قم، زنجان، سیستان‌وبلوچستان، شهید باهنر کرمان، هرمزگان، خلیج فارس، بیرجند، شهرکرد، لرستان، ایلام، محقق اردبیلی، صنعتی سهند، صنعتی شاهرود، دانشگاه‌های علوم پزشکیِ دارای رشتهٔ مربوط و دانشگاه آزاد اسلامی (واحدهای مرتبط). این‌ها نمونه‌اند، نه ادعای فهرست کامل؛ برای برآورده‌کردن پوشش همهٔ کشور، فهرست رسمی و روزآمد مؤسسات و رشته‌ها را از مراجع وزارت علوم/وزارت بهداشت تکمیل و پذیرش هر دانشگاه را در وبگاه رسمی راستی‌آزمایی کنید؛ نام یا رشتهٔ غیرواقعی نسازید.':group.includes('تحقیق')?'پرسش پژوهش، ادعا، شواهد، روش و محدودیت را تفکیک کنید و منبع نامطمئن نسازید.':group.includes('پروژه')?'هدف، نیازمندی‌ها، مراحل اجرا، معیار موفقیت، ریسک و ارزیابی نهایی را مشخص کنید.':group.includes('انشا')?'فقط برای پایه‌های اول تا ششم ابتدایی تمرین متناسب طراحی کنید؛ ایدهٔ مرکزی، توالی بندها، واژگان و بازخورد را با سطح کودک هماهنگ کنید.':group.includes('املا')?'تمرین املا را دقیقاً متناسب با پایهٔ ابتدایی انتخاب‌شده طراحی کنید؛ واژه‌های آشنا و بازخورد مهربانانه به کار ببرید.':'مفهوم را از صورت سؤال جدا کنید، داده‌ها و خواسته را روشن سازید و یادگیری را بر حفظ پاسخ مقدم بدارید.';
- const opGuides={
- 'نکات کلیدی':'مهم‌ترین مفهوم را در چند نکتهٔ کوتاه سازمان دهید؛ برای هر نکته یک دلیل یا مثال و یک واژهٔ کلیدی بیاورید.',
- 'تحلیل سقراطی':'به‌جای اعلام فوری نتیجه، پرسش‌های پله‌ای بسازید: چه می‌دانیم؟ از کجا؟ چه فرضی داریم؟ اگر فرض عوض شود چه؟',
- 'چهارگزینه‌ای':'یک پرسش چهارگزینه‌ای آموزشی، گزینه‌های نزدیک اما معنادار و توضیح علت درستی/نادرستی بسازید؛ اگر داده کافی نیست، نمونه را صریحاً تمرینی اعلام کنید.',
- 'جای خالی':'جمله یا بند هدفمند با جای خالی بسازید و کلید و دلیل پاسخ را جدا بیاورید؛ نکتهٔ مورد سنجش باید روشن باشد.',
- 'صحیح/غلط':'چند گزارهٔ قابل‌داوری ارائه کنید، پاسخ را با دلیل کوتاه توجیه کنید و گزارهٔ غلط را به شکل درست بازنویسی کنید.',
- 'بله/خیر':'پرسش‌های بله/خیر دقیق و تک‌موضوعی مطرح کنید؛ برای هر پاسخ، یک توجیه و در صورت لزوم شرط استثنا بیاورید.',
- 'وصل‌کردنی':'دو ستون هم‌سطح از اصطلاح و تعریف/نمونه تنظیم کنید و کلید تطبیق را پس از تمرین بیاورید.',
- 'اشاره‌ای/راهنمایی':'راهنمایی را مرحله‌ای ارائه کنید: اشارهٔ کوچک، سرنخ روش، سپس گام بعد؛ پاسخ نهایی را زود افشا نکنید.',
- 'تشریحی و گام‌به‌گام':'داده‌ها، خواسته، اصل یا تعریف مرتبط، مراحل استدلال، نتیجه و بازبینی را جداگانه توضیح دهید.',
- 'بازطراحی و سؤال مشابه':'یک سؤال تازه با همان مهارت و دشواری بسازید، اما اعداد/بافت را تغییر دهید؛ پاسخ‌نامه و تفاوت اصلی را نیز بدهید.',
- 'درس‌نامه و فرمول‌ها':'تعریف‌ها، نمادها، فرمول و شرط کاربرد را فهرست کنید؛ سپس مثال حل‌شده و یک تمرین انتقالی اضافه کنید.',
- 'زمان‌سنجی و راهبرد':'کار را به گام‌های زمانی واقع‌بینانه تقسیم کنید، نقطهٔ توقف و راهبرد بررسی پاسخ را تعیین کنید.',
- 'دام‌ها/خطاهای رایج':'برداشت‌های نادرست محتمل، علت بروز هر خطا، نشانهٔ تشخیص و روش اصلاح را فهرست کنید.'};
- Object.assign(opGuides,{
- 'کلمات املای کلیدی':'واژه‌های مهم املایی متن را با املای درست، معنی ساده و یک جملهٔ نمونه فهرست کنید؛ متناسب با پایه واژه‌های قابل فهم انتخاب کنید.',
- 'این کلمه املایی به چه اشاره دارد؟':'معنای واژه را با زبان ساده توضیح دهید، آن را در جمله به کار ببرید و نشانه‌ای برای به‌خاطر سپردن املای درست بدهید.',
- 'املای چهارگزینه‌ای':'یک پرسش چهارگزینه‌ای بسازید که فقط یک صورت نوشتاری درست داشته باشد؛ پاسخ و دلیل انتخاب را کوتاه و روشن توضیح دهید.',
- 'کلمه املایی جایش خالی شده':'واژهٔ هدف را در جمله‌ای مناسب پایه به‌صورت جای خالی بیاورید؛ پس از پاسخ، املای درست و دلیل آن را نشان دهید.',
- 'املای کلمه صحیح/غلط بر اساس معنا':'صورت‌های نوشتاری را با توجه به معنای جمله بسنجید؛ تفاوت معنایی واژه‌های هم‌آوا را ساده توضیح دهید.',
- 'املای کلمه صحیح/غلط بر اساس املا':'صورت نوشتاری هر واژه را از نظر قواعد و شکل درست حروف بررسی کنید؛ غلط را اصلاح و علت را بیان کنید.',
- 'املای کلمه به‌صورت بله/خیر':'پرسش‌های روشن بله/خیر دربارهٔ املای واژه بسازید و برای هر پاسخ، دلیل کوتاه و صورت صحیح را بیاورید.',
- 'املای کلمه وصل‌کردنی':'واژه‌ها را به معنی، تصویرسازی کلامی یا صورت درستشان وصل کنید؛ پاسخ‌نامهٔ تطبیق را در پایان بیاورید.',
- 'کلمه‌ای مشابه این کلمه املایی':'واژه‌ای هم‌خانواده، هم‌معنا یا مشابه از نظر الگوی املایی پیشنهاد دهید؛ نوع شباهت را مشخص کنید و مثال بزنید.',
- 'کلمه بدون نقطه':'نمونه‌های مناسب پایه از واژه‌های بدون نقطه ارائه کنید؛ تعداد نقطه‌ها را بر اساس حروف واژه و با دقت توضیح دهید.',
- 'کلمه یک نقطه‌ای':'واژه‌های مناسب پایه با یک نقطه معرفی کنید؛ حرف نقطه‌دار را مشخص و شمارش را نشان دهید.',
- 'کلمه دو نقطه‌ای':'واژه‌های مناسب پایه با دو نقطه معرفی کنید؛ نقطه‌های حروف را جداگانه بشمارید و املای واژه را تثبیت کنید.',
- 'کلمه ۳ نقطه‌ای':'واژه‌های مناسب پایه با سه نقطه معرفی کنید؛ شمارش نقطه‌ها را با اشاره به حروف انجام دهید.',
- 'کلمه ۴ نقطه‌ای':'واژه‌های مناسب پایه با چهار نقطه معرفی کنید؛ شمارش دقیق نقطه‌های همهٔ حروف را توضیح دهید.',
- 'کلمه ۵ نقطه‌ای':'واژه‌های مناسب پایه با پنج نقطه معرفی کنید؛ در صورت کمبود نمونهٔ طبیعی، این محدودیت را صریح بگویید و واژه نسازید.',
- 'زمان‌سنجی کردن کلمه املایی':'تمرین کوتاه زمان‌دار پیشنهاد دهید: دیدن/شنیدن واژه، نوشتن، سپس بازبینی؛ زمان را برای سن و پایه مناسب تعیین کنید.',
- 'دام‌ها/خطاهای رایج کلمه املایی':'اشتباه‌های رایج در واژه‌های هدف را شناسایی کنید، صورت درست را مقایسه کنید و راه یادسپاری کودکانه بدهید.',
- 'کلمه املایی با ح':'واژه‌های مناسب پایه که حرف «ح» دارند پیشنهاد کنید؛ جایگاه حرف و املای درست را با جملهٔ ساده تمرین دهید.',
- 'کلمه املایی با ه':'واژه‌های مناسب پایه دارای «ه» را پیشنهاد دهید؛ در صورت ارتباط، تفاوت «ه» و «ح» را با مثال روشن کنید.',
- 'کلمه املایی با ق':'واژه‌های مناسب پایه دارای «ق» انتخاب کنید و املای آن‌ها را در جمله‌ای روشن تمرین دهید.',
- 'کلمه املایی با ث':'واژه‌های آشنای دارای «ث» متناسب با پایه بیاورید و شکل درست را با معنی یا جمله تثبیت کنید.',
- 'کلمه املایی با ص':'واژه‌های مناسب پایه دارای «ص» ارائه کنید؛ در صورت لزوم تفاوت شنیداری با «س/ث» را یادآوری کنید.',
- 'کلمه املایی با آ':'واژه‌های مناسب پایه دارای «آ» را با توجه به جایگاه آن در واژه و نمونهٔ جمله تمرین دهید.',
- 'کلمه املایی با ا':'واژه‌های مناسب پایه دارای «ا» را در جایگاه‌های متفاوت معرفی و شکل نوشتاری را تمرین دهید.',
- 'کلمه املایی با س':'واژه‌های مناسب پایه دارای «س» را بیاورید و در صورت نیاز تفاوت املایی آن را با «ص/ث» بیان کنید.',
- 'کلمه املایی با ز':'واژه‌های مناسب پایه دارای «ز» را معرفی کنید و در صورت نیاز آن‌ها را با «ذ/ض/ظ» مقایسه کنید.',
- 'کلمه املایی با ژ':'واژه‌های آشنای مناسب پایه با «ژ» ارائه کنید؛ اگر نمونه محدود است، از واژه‌سازی خودداری کنید.',
- 'کلمه املایی با ذ':'واژه‌های آشنای مناسب پایه دارای «ذ» را در جمله تمرین دهید و در صورت نیاز با «ز» مقایسه کنید.',
- 'کلمه املایی با ط':'واژه‌های مناسب پایه دارای «ط» را ارائه کنید و تفاوت املایی آن را با «ت» در نمونهٔ معنادار نشان دهید.',
- 'کلمه املایی با ظ':'واژه‌های آشنای مناسب پایه دارای «ظ» را در جمله تمرین دهید و در صورت نیاز با «ز/ذ/ض» مقایسه کنید.',
- 'کلمه املایی با ض':'واژه‌های مناسب پایه دارای «ض» را معرفی کنید؛ معنی و صورت درست را با جملهٔ کوتاه تثبیت کنید.',
- 'کلمه املایی با غ':'واژه‌های مناسب پایه دارای «غ» را بیاورید و در صورت نیاز تفاوت شنیداری با «ق» را توضیح دهید.',
- 'کلمه املایی با ع':'واژه‌های مناسب پایه دارای «ع» را با جمله و نشانهٔ یادسپاری ساده تمرین دهید.',
- 'کلمه املایی با ت':'واژه‌های مناسب پایه دارای «ت» را معرفی کنید و در صورت ارتباط تفاوت نوشتاری «ت/ط» را تمرین دهید.',
- 'کلمه املایی با ئ':'نمونه‌های درست و رایجِ متناسب با پایه دارای «ئ» را ارائه کنید؛ اگر واژهٔ مناسبی نیست، شفاف بگویید.',
- 'کلمه املایی با ء':'نمونه‌های مناسب و درستِ دارای «ء» را با املای دقیق بیاورید؛ جایگاه همزه را نشان دهید و واژهٔ نامعتبر نسازید.'});
- const optkGuides={
-'آپشنک آنالیزوری گام به گام دروس ابتدایی تا دکتری':'موضوع را گام‌به‌گام تحلیل کنید: گام ۱ واژگان و پیش‌نیازها، گام ۲ مفهوم اصلی با مثال، گام ۳ حل تشریحی مرحله‌به‌مرحله، گام ۴ نکتهٔ کلیدی، گام ۵ تمرین مشابه با پاسخ. متناسب با سطح «'+grade+'» عمق تحلیل را تنظیم کنید.',
-'آپشنک پشتیبانی از چند زبان دنیا':'مفاهیم کلیدی را علاوه بر فارسی، به انگلیسی و در صورت ارتباط موضوع به عربی نیز ارائه دهید؛ اصطلاح تخصصی هر زبان را کنار معادل فارسی بنویسید و برای واژه‌های دشوار تلفظ ساده بیاورید.',
-'آپشنک استخراج کننده مفاهیم کلیدی':'فهرست مفاهیم کلیدی متن/موضوع را با اولویت‌بندی استخراج کنید؛ برای هر مفهوم: تعریف کوتاه، اهمیت، ارتباط با سایر مفاهیم و یک مثال.',
-'آپشنک تله و دامها و خطاهای پر تکرار':'تله‌ها و دام‌های رایج این موضوع در آزمون‌ها و تکالیف را فهرست کنید؛ برای هر دام: نشانهٔ تشخیص، علت خطای پرتکرار، مثال واقعی و راه پیشگیری.',
-'آپشنک مشاوره و بهینه سازی و ارتقاء مسیر موفقیت تحصیلی':'یک برنامهٔ بهینه‌سازی شخصی ارائه دهید: وضعیت فعلی، اهداف هفتگی، روش مطالعهٔ متناسب با سطح «'+grade+'»، مدیریت زمان، منابع پیشنهادی و شاخص سنجش پیشرفت.',
-'آپشنک جمع بندی نکات دروس':'نکات درس را در قالب فهرست شماره‌دار جمع‌بندی کنید؛ هر نکته حداکثر یک‌دو جمله، به‌همراه فرمول/قاعده مرتبط و علامت‌گذاری نکات پرتکرار آزمونی.',
-'آپشنک خلاصه دروس هر سطح':'خلاصهٔ سازگار با سطح «'+grade+'» ارائه دهید: خلاصهٔ یک‌پاراگرافی، سپس نقطه‌های کلیدی به‌صورت گلوله‌ای و در پایان سه پرسش خودسنجی با پاسخ کوتاه.'};
-const opGuide=opGuides[op]||'مفهوم را مرحله‌به‌مرحله تحلیل و یادگیری را با تمرین فعال تثبیت کنید.';
- const isAnswer=sub.includes('پاسخ');
- const contentBlock=text?`متن ورودی برای بررسی:\n«${text.slice(0,3000)}${text.length>3000?' … (ادامهٔ متن برای اختصار نمایش داده نشد)':''}»`:`ورودی متنی در دسترس نیست. ${source} از اطلاعات موجود نمی‌توان محتوای تصویر/صوت را حدس زد؛ شرح تصویر یا متن پیاده‌سازی‌شده را در کادر منبع وارد کنید. بااین‌حال راهنمای آموزشی و چارچوب تحلیل زیر بر اساس انتخاب‌های شما آماده شده است.`;
- const action=isAnswer?'چون زیرگروه «پاسخ» است، ابتدا درستی، کامل‌بودن و دلیل هر ادعا را بسنجید؛ سپس شکاف‌های دانشی را به پرسش یادگیری تبدیل کنید.':'چون زیرگروه «سؤال» است، خواسته، داده‌های صریح، واژه‌های کلیدی و پیش‌نیازها را جدا کنید؛ قبل از پاسخ، مسیر حل را حدس بزنید.';
- const practice=text?'۱) پاسخ یا راه‌حل را با بیان خودتان بازسازی کنید.\n۲) برای هر گام بگویید چرا معتبر است و چه دانشی لازم دارد.\n۳) یک مثال تازه بسازید و نتیجه را بررسی کنید.':'۱) متن یا شرح محتوای منبع را وارد کنید.\n۲) ابتدا بدون کمک پاسخ یا برداشت اولیه بنویسید.\n۳) نتیجه را با دلیل و یک مثال مستقل ارزیابی کنید.';
- return `تحلیل آموزشی و دانشگاهیِ شخصی‌سازی‌شده\n\nمسیر انتخاب‌شده\nگروه: ${group}\nمنبع: ${state.modalityName||'تعیین نشده'}\nزیرگروه: ${sub}\nعملیات: ${op}\nسطح: ${grade}\nنوع خروجی: ${state.outputMode==='audio'?'شنیداری':'نوشتاری'}\nآپشنک‌های فعال: ${state.optks.length?state.optks.join('، '):'انتخاب نشده'}\n\n۱) محتوای ورودی\n${contentBlock}\n\n۲) هدف و چارچوب یادگیری\n${groupNote}\n${levelNote}\n${action}\n\n۳) اجرای عملیات «${op}»\n${opGuide}\nبرای ورودی موجود، این عملیات را به ادعاها/مفاهیم مشخص متن پیوند دهید و هر نتیجه را با شاهدی از ورودی توجیه کنید. اگر شواهد کافی نیست، ابهام را صریح نگه دارید و اطلاعات لازم را به‌صورت پرسش مطرح کنید؛ داده، منبع یا پاسخ قطعی نسازید.${state.optks.length?state.optks.map((optk,i)=>'\n\n۳-'+(i+1)+') اجرای '+optk+'\n'+(optkGuides[optk]||'این آپشنک را با تکیه بر محتوای ورودی و سطح «'+grade+'» اجرا کنید و خروجی را ساختارمند و مرحله‌ای ارائه دهید.')).join(''):''}\n\n۴) تحلیل مفهومی و روش کار\n• مفهوم محوری: از متن، موضوع یا مهارت اصلی را در یک جمله استخراج کنید؛ در صورت نبود متن، آن را پس از دریافت شرح منبع تعیین کنید.\n• پیش‌نیاز: تعریف‌ها و دانسته‌هایی را که برای فهم موضوع لازم است نام ببرید و هر مورد نامعلوم را علامت بزنید.\n• استدلال: مسیر «داده/ادعا ← قاعده یا شاهد ← نتیجه» را قدم‌به‌قدم تنظیم کنید؛ پرش منطقی را مشخص کنید.\n• دقت علمی: اصطلاحات را تعریف کنید، واحدها/شرط‌ها را کنترل کنید و میان واقعیت، تفسیر و حدس مرز بگذارید.\n\n۵) تمرین فعال و بازخورد\n${practice}\nپس از هر تلاش، بازخورد را به سه بخش تقسیم کنید: آنچه درست انجام شد، نقطه‌ای که نیاز به بازبینی دارد، و یک گام مشخص برای پیشرفت. پاسخ را رونویسی نکنید؛ با زبان خودتان بازسازی و از مدرس دربارهٔ ابهام‌ها سؤال کنید.\n\n۶) معیار ارزیابی\nفهم خواسته و واژگان کلیدی (۲۵٪)؛ صحت مفاهیم و استدلال (۳۵٪)؛ شواهد/مثال و کاربرد (۲۵٪)؛ وضوح نگارش یا بیان و خودبازبینی (۱۵٪). برای تکلیف پژوهشی، اعتبار منبع و شفافیت روش را نیز بررسی کنید.\n\n۷) جمع‌بندی و گام بعدی\nیک خلاصهٔ سه‌جمله‌ای با بیان خودتان بنویسید، مهم‌ترین نکتهٔ نامطمئن را مشخص کنید و یک پرسش پیگیری طرح کنید. اگر ورودی تصویر یا صوت است، شرح قابل‌خواندن یا متن پیاده‌سازی‌شده را اضافه کنید تا تحلیل محتوایی دقیق‌تر شود. این پاسخ در همین صفحه و بدون ارسال دادهٔ شما به بیرون ساخته شده است.`;
-}
-async function runRequest(level,mode,card){if(!getAllowedLevels().includes(level)){status('این گروه فقط برای سطح تحصیلی مجاز قابل استفاده است.');return}state.level=level;state.optks=(state.optksByLevel[level]||[]).slice();state.outputMode=mode;document.querySelectorAll('.level').forEach(x=>x.classList.toggle('active',x===card));updateTracker();resetOutput();show('result');scrollTo('outputPanel');const localAnswer=generateAnalysis();const requestId=(window.__aiRequestId||0)+1;window.__aiRequestId=requestId;$('result').textContent=localAnswer;status('پاسخ هوشمند محلی آماده شد؛ در حال بررسی پاسخ زنده…');if(mode==='audio')speak(localAnswer);const controller=new AbortController();const timeoutId=setTimeout(()=>controller.abort(),50000);try{const liveAnswer=await requestLiveAI(localAnswer,controller.signal);if(requestId!==window.__aiRequestId)return;$('result').textContent=liveAnswer;status('پاسخ زنده آماده شد.');if(mode==='audio')speak(liveAnswer)}catch(e){if(requestId===window.__aiRequestId)status('پاسخ برخط در دسترس نیست؛ لطفاً اتصال اینترنت خود را بررسی کنید یا مجدداً تلاش نمایید. پاسخ آماده‌شده در صفحه حفظ شده است.',true);}finally{clearTimeout(timeoutId)}}
-function speak(text){if(!('speechSynthesis'in window)){status($('status').textContent+'\nاین مرورگر قابلیت تبدیل متن به گفتار ندارد.');return}speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(text);u.lang='fa-IR';u.onstart=()=>$('stopSpeech').classList.remove('hidden');u.onend=()=> $('stopSpeech').classList.add('hidden');u.onerror=()=>{$('stopSpeech').classList.add('hidden');status($('status').textContent+'\nپخش گفتار با خطا روبه‌رو شد.')};$('stopSpeech').classList.remove('hidden');speechSynthesis.speak(u)}$('stopSpeech').onclick=()=>{speechSynthesis.cancel();$('stopSpeech').classList.add('hidden')};
-$('clearResult').onclick=()=>{resetOutput();status('متن پاسخ پاک شد؛ تنظیمات انتخاب‌شده برای اجرای دوباره باقی ماند.');};
-$('copyResult').onclick=async()=>{let text=$('result').textContent;if(!text){status('هنوز پاسخی برای کپی وجود ندارد. ابتدا سطح و نوع پاسخ را انتخاب کنید.');return}try{await navigator.clipboard.writeText(text);status('پاسخ کپی شد.')}catch(e){let ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();status('پاسخ کپی شد.')}};
-$('saveText').onclick=()=>{if(!$('result').textContent){status('هنوز پاسخی برای ذخیره وجود ندارد. ابتدا تحلیل را بسازید.');return}let blob=new Blob(['\ufeff'+$('result').textContent],{type:'text/plain;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='AI.AI-answer.txt';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
-$('saveAudio').onclick=async()=>{let text=$('result').textContent;if(!text){status('هنوز پاسخی برای ذخیرهٔ صوتی وجود ندارد. ابتدا تحلیل را بسازید.');return}if(!navigator.mediaDevices?.getDisplayMedia||!window.MediaRecorder){status('ضبط مستقیم صدای برگه در این مرورگر در دسترس نیست؛ پاسخ با گفتار فارسی خوانده می‌شود. برای ذخیرهٔ فایل صوتی، مرورگر سازگار را به کار ببرید.');speak(text);return}try{status('در پنجرهٔ اشتراک‌گذاری، همین برگه و اشتراک‌گذاری صدای برگه را انتخاب کنید.');let stream=await navigator.mediaDevices.getDisplayMedia({video:true,audio:true});if(!stream.getAudioTracks().length){stream.getTracks().forEach(t=>t.stop());status('صدای برگه در اشتراک‌گذاری فعال نشد؛ دوباره تلاش کنید و اشتراک‌گذاری صدا را روشن کنید.',true);return}let chunks=[],mime=MediaRecorder.isTypeSupported('audio/webm;codecs=opus')?'audio/webm;codecs=opus':'audio/webm',rec=new MediaRecorder(stream,{mimeType:mime});rec.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};rec.onstop=()=>{if(chunks.length){let blob=new Blob(chunks,{type:mime}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='AI.AI-answer-audio.webm';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000);status('فایل صوتی پاسخ ذخیره شد.')}stream.getTracks().forEach(t=>t.stop())};rec.start();let utterance=new SpeechSynthesisUtterance(text);utterance.lang='fa-IR';utterance.onend=()=>setTimeout(()=>rec.stop(),400);utterance.onerror=()=>{if(rec.state!=='inactive')rec.stop();status('تبدیل پاسخ به گفتار با خطا روبه‌رو شد.',true)};speechSynthesis.cancel();speechSynthesis.speak(utterance)}catch(e){status('ذخیرهٔ پاسخ صوتی انجام نشد؛ لطفاً دوباره تلاش نمایید.',true)}};
-const LIVE_ENDPOINT='https://api.gapgpt.app/v1/chat/completions';
-const LIVE_ACCESS_KEY='secret-802f7d38';
-const LIVE_MODEL='gpt-4o-mini';
-const LIVE_ERROR_MESSAGE='پاسخ برخط در دسترس نیست؛ لطفاً اتصال اینترنت خود را بررسی کنید یا مجدداً تلاش نمایید.';
-async function requestLiveAI(promptText,signal){
- let timeoutId;
- try{
-  const controller=signal instanceof AbortController?signal:new AbortController();
-  timeoutId=setTimeout(()=>controller.abort(),50000);
-  const response=await fetch(LIVE_ENDPOINT,{method:'POST',signal:controller.signal,headers:{'Content-Type':'application/json','Authorization':'Bearer '+LIVE_ACCESS_KEY},body:JSON.stringify({model:LIVE_MODEL,messages:[{role:'system',content:'به فارسی، دقیق و متناسب با سطح تحصیلی پاسخ آموزشی بده. در صورت ناکافی بودن اطلاعات، شفاف بگو.'},{role:'user',content:promptText}]})});
-  const data=await response.json();
-  if(!response.ok)throw new Error(LIVE_ERROR_MESSAGE);
-  const reply=data.choices?.[0]?.message?.content||data.reply||data.text;
-  if(typeof reply!=='string'||!reply.trim())throw new Error(LIVE_ERROR_MESSAGE);
-  return reply.trim();
- }catch(_error){
-  throw new Error(LIVE_ERROR_MESSAGE);
- }finally{if(timeoutId!==undefined)clearTimeout(timeoutId)}
-}
-// State history and a universal one-step back action for the workflow.
-const stateStack=[];let lastStateSignature=JSON.stringify(state);document.addEventListener('click',()=>{queueMicrotask(()=>{const now=JSON.stringify(state);if(now!==lastStateSignature){stateStack.push(JSON.parse(lastStateSignature));if(stateStack.length>40)stateStack.shift();lastStateSignature=now}})},true);
-function backOneStep(){playSynthesizedSound();if(state.level){state.level=null;state.optks=[];document.querySelectorAll('.level').forEach(x=>x.classList.remove('active'));updateTracker();status('سطح انتخابی لغو شد؛ دوباره سطح را انتخاب کنید.');scrollTo('levelsPanel')}else if(state.op){state.op=null;document.querySelectorAll('#operations button').forEach(x=>badge(x,false));show('levelsPanel',false);updateTracker();status('عملیات لغو شد؛ عملیات دیگری انتخاب کنید.');scrollTo('opsPanel')}else if(state.sub){state.sub=null;document.querySelectorAll('#subgroups button').forEach(x=>badge(x,false));show('opsPanel',false);show('levelsPanel',false);updateTracker();status('زیرگروه لغو شد؛ سؤال یا پاسخ را انتخاب کنید.');scrollTo('subPanel')}else if(state.route){state.route=null;state.sub=null;state.op=null;state.level=null;state.optks=[];show('subPanel',false);show('opsPanel',false);show('levelsPanel',false);updateTracker();status('مسیر پاسخ لغو شد؛ بخش پاسخ را دوباره انتخاب کنید.');scrollTo('routePanel')}else if(state.mod){state.mod=null;state.modalityName=null;state.image=null;state.audio=null;state.transcript='';show('routePanel',false);show('subPanel',false);show('opsPanel',false);show('levelsPanel',false);$('sourceArea').innerHTML='';document.querySelectorAll('#modalities button').forEach(x=>badge(x,false));updateTracker();status('انتخاب منبع لغو شد؛ منبع دیگری انتخاب کنید.');scrollTo('modPanel')}else if(state.group){clearAfterGroup();state.group=null;document.querySelectorAll('#groups .card').forEach(x=>badge(x,false));updateTracker();status('انتخاب گروه لغو شد؛ گروه دیگری انتخاب کنید.');scrollTo('groupsPanel')}else{status('در ابتدای مسیر هستید؛ مرحله‌ای برای بازگشت وجود ندارد.');scrollTo('groupsPanel')}lastStateSignature=JSON.stringify(state);if(stateStack.length)stateStack.pop()}
-$('cancelBackButton').addEventListener('click',backOneStep);document.addEventListener('keydown',e=>{if(e.altKey&&e.key==='ArrowLeft'){e.preventDefault();backOneStep()}});
-
-updateTracker();
-
-async function copyPaymentText(value,label){try{if(navigator.clipboard && window.isSecureContext){await navigator.clipboard.writeText(value)}else{const t=document.createElement('textarea');t.value=value;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();if(!document.execCommand('copy'))throw new Error('copy failed');t.remove()}alert(label+' در کلیپ‌بورد کپی شد.')}catch(e){alert('کپی انجام نشد؛ لطفاً متن را دستی انتخاب کنید.')}}
-</script><script>
-(()=>{
- const excluded=new Set(['SCRIPT','STYLE','TEXTAREA','INPUT','OPTION','NOSCRIPT']);
- function enhanceTextNode(node){
-  if(!node||!node.nodeValue||!/(?:هوش مصنوعی|AI)/.test(node.nodeValue))return;
-  const parent=node.parentElement;if(!parent||excluded.has(parent.tagName)||parent.closest('.ai-emphasis'))return;
-  const text=node.nodeValue,rx=/(هوش مصنوعی|AI)/g;let m,last=0,frag=document.createDocumentFragment();
-  while((m=rx.exec(text))){if(m.index>last)frag.append(document.createTextNode(text.slice(last,m.index)));
-   if(m[0]==='هوش مصنوعی'){const span=document.createElement('span');span.className='ai-emphasis';span.textContent=m[0];frag.append(span)}
-   else if(m[0]==='AI.AI'){const span=document.createElement('span');span.className='ai-badge-fixed ai-ltr-pink';span.setAttribute('dir','ltr');span.textContent='AI.AI';frag.append(span)}
-   else {const span=document.createElement('span');span.className='ai-badge-fixed';span.setAttribute('dir','ltr');span.textContent='AI';frag.append(span)}last=rx.lastIndex;
+function goBack(){
+  if(S.history.length > 1){
+    S.history.pop();
+    const prev = S.history[S.history.length-1];
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.getElementById(prev).classList.add('active');
+    document.getElementById('backBtn').style.display = S.history.length > 1 ? 'block' : 'none';
   }
-  if(last<text.length)frag.append(document.createTextNode(text.slice(last)));node.replaceWith(frag);
- }
- function scan(root){const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;const nodes=[];while(n=walker.nextNode())nodes.push(n);nodes.forEach(enhanceTextNode)}
- scan(document.body);
- new MutationObserver(records=>records.forEach(r=>{r.addedNodes.forEach(n=>{if(n.nodeType===Node.TEXT_NODE)enhanceTextNode(n);else if(n.nodeType===Node.ELEMENT_NODE&&!excluded.has(n.tagName))scan(n)});if(r.type==='characterData')enhanceTextNode(r.target)})).observe(document.body,{subtree:true,childList:true,characterData:true});
- document.addEventListener('click',e=>{const target=e.target instanceof Element?e.target.closest('.glass,.card,.op,.level,.optk,.sourcebox,.result,.status,.tools,.path-card,.intro-line,.manager-copy,.mission-content p'):null;if(!target)return;target.classList.add('interaction-glow');clearTimeout(target.__glowTimer);target.__glowTimer=setTimeout(()=>target.classList.remove('interaction-glow'),1100);if(!e.target.closest('button,summary,input[type=file]')&&typeof playSynthesizedSound==='function')playSynthesizedSound()},true);
-})();
-</script></body></html>
+}
+
+function setPreference(n){
+  S.pref = n;
+  showPanel('groupsPanel');
+}
+
+function selectGroup(g, fee){
+  S.group = g; S.fee = fee;
+  document.getElementById('tGroup').innerText = g + ' (' + fee + ')';
+  showPanel('modPanel');
+}
+
+function selectSource(src){
+  S.source = src;
+  document.getElementById('tSub').innerText = src;
+}
+
+function proceedToRoute(){
+  if(!S.source) S.source = 'متن تایپ‌شده';
+  showPanel('routePanel');
+}
+
+function runDirect(mode){
+  const txt = document.getElementById('inputText').value || 'سؤال بدون متن ثبت‌شده';
+  document.getElementById('resultBox').innerText = `[پاسخ مستقیم هوش مصنوعی AI.AI (${mode})]\nگروه: ${S.group}\nمنبع: ${S.source}\nمتن ورودی محصل: ${txt}\n\nپاسخ مستخرج: این پاسخ طبق مکانیزم هوش مصنوعی بدون ورود به جزییات آنالیز تولید گردید تا بتوانید مستقیماً برای مدرس خود ارسال نمایید.`;
+  showPanel('outputPanel');
+  if(mode === 'شنیداری') speakOutput();
+}
+
+function openSubPanel(){
+  showPanel('subPanel');
+}
+
+function selectSub(sub){
+  S.sub = sub;
+  document.getElementById('tSub').innerText = S.source + ' • ' + sub;
+  renderOps();
+  showPanel('opsPanel');
+}
+
+function renderOps(){
+  const c = document.getElementById('opsContainer');
+  c.innerHTML = '';
+  generalOps.forEach((op, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'card-btn';
+    btn.innerHTML = `${i+1} آپشن ${op}`;
+    btn.onclick = () => { S.op = op; document.getElementById('tOp').innerText = op; renderLevels(); showPanel('levelsPanel'); };
+    c.appendChild(btn);
+  });
+}
+
+function renderLevels(){
+  const c = document.getElementById('levelsContainer');
+  c.innerHTML = '';
+  levelsList.forEach(lvl => {
+    const box = document.createElement('div');
+    box.style = 'background:#0b0f19;border:1px solid #334155;padding:12px;border-radius:12px';
+    box.innerHTML = `<strong style="color:#38bdf8">${lvl}</strong>
+      <div class="btn-group" style="margin-top:8px">
+        <button class="btn btn-primary" onclick="executeFinal('${lvl}','نوشتاری')">آپشن نوشتاری</button>
+        <button class="btn" onclick="executeFinal('${lvl}','شنیداری')">آپشن شنیداری</button>
+      </div>`;
+    c.appendChild(box);
+  });
+}
+
+function executeFinal(lvl, mode){
+  S.level = lvl;
+  document.getElementById('tLevel').innerText = lvl;
+  const input = document.getElementById('inputText').value || 'سؤال و محتوای پیش‌فرض کاربر';
+  const res = `[آنالیز کامل هوش مصنوعی AI.AI]\n` +
+    `• گروه حقیقی: ${S.group}\n` +
+    `• زیرگروه و منبع: ${S.sub}\n` +
+    `• عملیات تحلیلی: ${S.op}\n` +
+    `• مقطع تحصیلی: ${lvl} (${mode})\n\n` +
+    `📌 استخراج مفاهیم کلیدی و پاسخ:\nتحلیل گام‌به‌گام بر مبنای متدولوژی آموزشی AI.AI انجام گردید.\n\n` +
+    `⚠️ تله‌ها، دام‌های آزمونی و خطاهای پر تکرار:\nدر این مبحث تله‌های مفهومی شناسایی شده و راهبرد حل سریع برای پیشگیری از افت تحصیلی ضمیمه گردید.`;
+  document.getElementById('resultBox').innerText = res;
+  showPanel('outputPanel');
+  if(mode === 'شنیداری') speakOutput();
+}
+
+function clearOutput(){ document.getElementById('resultBox').innerText = ''; }
+function copyOutput(){ copyText(document.getElementById('resultBox').innerText); }
+function copyText(txt){ navigator.clipboard.writeText(txt); alert('کپی شد: ' + txt); }
+
+function downloadTxt(){
+  const blob = new Blob([document.getElementById('resultBox').innerText], {type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'AI_AI_Output.txt';
+  a.click();
+}
+
+function speakOutput(){
+  const t = document.getElementById('resultBox').innerText;
+  if('speechSynthesis' in window){
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(t);
+    u.lang = 'fa-IR';
+    window.speechSynthesis.speak(u);
+  }
+}
+
+function stopAudio(){ if('speechSynthesis' in window) window.speechSynthesis.cancel(); }
+
+function speakHeader(){
+  if('speechSynthesis' in window){
+    const u = new SpeechSynthesisUtterance("پلتفرم هوش مصنوعی آنالیزور درس ما ایرانیان");
+    u.lang = 'fa-IR';
+    window.speechSynthesis.speak(u);
+  }
+}
+</script>
+</body>
+</html>
