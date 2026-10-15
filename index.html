@@ -220,7 +220,7 @@ const optks=['آپشنک آنالیزوری گام به گام دروس ابتد
 const $=id=>document.getElementById(id);let state={group:null,mod:null,route:null,sub:null,op:null,level:null,optks:[],optksByLevel:{},image:null,audio:null,transcript:''},audioUrl=null;
 let clickCtx=null;function playSynthesizedSound(){try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;clickCtx=clickCtx||new AC();if(clickCtx.state==='suspended')clickCtx.resume();const o=clickCtx.createOscillator(),g=clickCtx.createGain(),t=clickCtx.currentTime;o.type='sine';o.frequency.setValueAtTime(740,t);o.frequency.exponentialRampToValueAtTime(520,t+.065);g.gain.setValueAtTime(.045,t);g.gain.exponentialRampToValueAtTime(.001,t+.085);o.connect(g);g.connect(clickCtx.destination);o.start(t);o.stop(t+.09)}catch(e){}}document.addEventListener('click',e=>{if(e.target.closest('button,summary,input[type=file]'))playSynthesizedSound()},true);document.addEventListener('change',e=>{if(e.target.matches('input[type=checkbox]'))playSynthesizedSound()},true);document.querySelectorAll('details>summary').forEach(summary=>summary.addEventListener('click',e=>{e.preventDefault();const d=summary.parentElement;d.open=!d.open}));
 function scrollTo(id){setTimeout(()=>$(id).scrollIntoView({behavior:'smooth',block:'start'}),80)}function show(id,on=true){$(id).classList.toggle('hidden',!on)}function badge(el,yes){el.classList.toggle('selected',yes);el.setAttribute('aria-pressed',yes?'true':'false');let b=el.querySelector('.badge');if(yes&&!b){b=document.createElement('span');b.className='badge';b.textContent='انتخاب شد';el.appendChild(b)}else if(!yes&&b)b.remove()}
-function status(msg,err=false){const text=String(msg);const unsafe=/(?:\bHTTP\s*\d{3}\b|invalid\s*token|\btoken\b|توکن|گپ\s*جی\s*پی\s*تی|gapgpt|\bapi\b|کلید|request\s*id|\b(?:401|403|5\d\d)\b)/i.test(text);$('status').textContent=unsafe?'پاسخ برخط در دسترس نیست؛ لطفاً اتصال اینترنت خود را بررسی کنید یا مجدداً تلاش نمایید.':text;$('status').classList.toggle('error',err||unsafe)}function outputTools(on){}function resetOutput(){show('result',false);$('result').textContent='';outputTools(false);$('stopSpeech').classList.add('hidden');window.speechSynthesis?.cancel()}
+function status(msg,err=false){const text=String(msg);const unsafe=/(?:\bHTTP\s*\d{3}\b|invalid\s*token|\btoken\b|توکن|گپ\s*جی\s*پی\s*تی|gapgpt|gemini|کوگنیشن|\bapi\b|کلید|request\s*id|\b(?:401|403|5\d\d)\b)/i.test(text);$('status').textContent=unsafe?'پاسخ برخط در دسترس نیست؛ لطفاً اتصال اینترنت خود را بررسی کنید یا مجدداً تلاش نمایید.':text;$('status').classList.toggle('error',err||unsafe)}function outputTools(on){}function resetOutput(){show('result',false);$('result').textContent='';outputTools(false);$('stopSpeech').classList.add('hidden');window.speechSynthesis?.cancel()}
 function updateTracker(){$('tGroup').textContent=state.group??'هنوز انتخاب نشده';$('tSub').textContent=state.route==='direct'?'بخش اول: پاسخ بدون آنالیز':(state.sub?(state.modalityName+' • '+state.sub):'هنوز انتخاب نشده');$('tOp').textContent=state.op??'هنوز انتخاب نشده';$('tLevel').textContent=state.level??'هنوز انتخاب نشده';for(let id of ['tGroup','tSub','tOp','tLevel'])$(id).classList.toggle('on',!$(id).textContent.includes('هنوز'))}
 function clearAfterGroup(){state.mod=null;state.route=null;state.sub=null;state.op=null;state.level=null;state.optks=[];state.optksByLevel={};state.image=null;state.audio=null;state.transcript='';show('routePanel',false);show('subPanel',false);show('opsPanel',false);show('levelsPanel',false);$('sourceArea').innerHTML='';resetOutput();updateTracker()}
 /* ==== منطق کارت انتخاب کن ==== */
@@ -367,23 +367,33 @@ $('clearResult').onclick=()=>{resetOutput();status('متن پاسخ پاک شد�
 $('copyResult').onclick=async()=>{let text=$('result').textContent;if(!text){status('هنوز پاسخی برای کپی وجود ندارد. ابتدا سطح و نوع پاسخ را انتخاب کنید.');return}try{await navigator.clipboard.writeText(text);status('پاسخ کپی شد.')}catch(e){let ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();status('پاسخ کپی شد.')}};
 $('saveText').onclick=()=>{if(!$('result').textContent){status('هنوز پاسخی برای ذخیره وجود ندارد. ابتدا تحلیل را بسازید.');return}let blob=new Blob(['\ufeff'+$('result').textContent],{type:'text/plain;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='AI.AI-answer.txt';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
 $('saveAudio').onclick=async()=>{let text=$('result').textContent;if(!text){status('هنوز پاسخی برای ذخیرهٔ صوتی وجود ندارد. ابتدا تحلیل را بسازید.');return}if(!navigator.mediaDevices?.getDisplayMedia||!window.MediaRecorder){status('ضبط مستقیم صدای برگه در این مرورگر در دسترس نیست؛ پاسخ با گفتار فارسی خوانده می‌شود. برای ذخیرهٔ فایل صوتی، مرورگر سازگار را به کار ببرید.');speak(text);return}try{status('در پنجرهٔ اشتراک‌گذاری، همین برگه و اشتراک‌گذاری صدای برگه را انتخاب کنید.');let stream=await navigator.mediaDevices.getDisplayMedia({video:true,audio:true});if(!stream.getAudioTracks().length){stream.getTracks().forEach(t=>t.stop());status('صدای برگه در اشتراک‌گذاری فعال نشد؛ دوباره تلاش کنید و اشتراک‌گذاری صدا را روشن کنید.',true);return}let chunks=[],mime=MediaRecorder.isTypeSupported('audio/webm;codecs=opus')?'audio/webm;codecs=opus':'audio/webm',rec=new MediaRecorder(stream,{mimeType:mime});rec.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};rec.onstop=()=>{if(chunks.length){let blob=new Blob(chunks,{type:mime}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='AI.AI-answer-audio.webm';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000);status('فایل صوتی پاسخ ذخیره شد.')}stream.getTracks().forEach(t=>t.stop())};rec.start();let utterance=new SpeechSynthesisUtterance(text);utterance.lang='fa-IR';utterance.onend=()=>setTimeout(()=>rec.stop(),400);utterance.onerror=()=>{if(rec.state!=='inactive')rec.stop();status('تبدیل پاسخ به گفتار با خطا روبه‌رو شد.',true)};speechSynthesis.cancel();speechSynthesis.speak(utterance)}catch(e){status('ذخیرهٔ پاسخ صوتی انجام نشد؛ لطفاً دوباره تلاش نمایید.',true)}};
+const GEMINI_ENDPOINT='https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
 const GEMINI_API_KEY='AQ.Ab8RN6Jz-PjxSR8iDysLeZcKOz7qZC3eNI302Li6yUm1x-CzZA';
-const GEMINI_ENDPOINT='https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='+GEMINI_API_KEY;
-const LIVE_ERROR_MESSAGE='پاسخ برخط در دسترس نیست؛ لطفاً اتصال اینترنت خود را بررسی کنید یا مجدداً تلاش نمایید.';
+const GEMINI_ERROR_MESSAGE='پاسخ برخط در دسترس نیست؛ لطفاً اتصال اینترنت خود را بررسی کنید یا مجدداً تلاش نمایید.';
+const CORS_PROXIES=['','https://corsproxy.io/?','https://api.allorigins.win/raw?url='];
 async function requestLiveAI(promptText,signal){
  let timeoutId;
  try{
   const controller=signal instanceof AbortController?signal:new AbortController();
   timeoutId=setTimeout(()=>controller.abort(),50000);
-  const requestBody={contents:[{parts:[{text:"به فارسی، دقیق، علمی و متناسب با سطح تحصیلی پاسخ آموزشی بده:\n"+promptText}]}]};
-  const response=await fetch(GEMINI_ENDPOINT,{method:'POST',signal:controller.signal,headers:{'Content-Type':'application/json'},body:JSON.stringify(requestBody)});
-  const data=await response.json();
-  if(!response.ok)throw new Error(LIVE_ERROR_MESSAGE);
-  const reply=data.candidates?.[0]?.content?.parts?.[0]?.text;
-  if(typeof reply!=='string'||!reply.trim())throw new Error(LIVE_ERROR_MESSAGE);
-  return reply.trim();
+  const url=GEMINI_ENDPOINT+'?key='+encodeURIComponent(GEMINI_API_KEY);
+  const payload={"contents":[{"parts":[{"text":promptText}]}]};
+  let lastError=Error(GEMINI_ERROR_MESSAGE);
+  for(const proxy of CORS_PROXIES){
+   let target=proxy?url+encodeURIComponent(url):url;
+   try{
+    const response=await fetch(target,{method:'POST',signal:controller.signal,headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    if(!response.ok)throw new Error(GEMINI_ERROR_MESSAGE);
+    const contentType=(response.headers.get('content-type')||'');
+    const data=contentType.includes('application/json')?await response.json():JSON.parse(await response.text());
+    const reply=data?.candidates?.[0]?.content?.parts?.[0]?.text;
+    if(typeof reply!=='string'||!reply.trim())throw new Error(GEMINI_ERROR_MESSAGE);
+    return reply.trim();
+   }catch(_proxyError){lastError=_proxyError}
+  }
+  throw lastError;
  }catch(_error){
-  throw new Error(LIVE_ERROR_MESSAGE);
+  throw new Error(GEMINI_ERROR_MESSAGE);
  }finally{if(timeoutId!==undefined)clearTimeout(timeoutId)}
 }
 // State history and a universal one-step back action for the workflow.
