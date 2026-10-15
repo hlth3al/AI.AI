@@ -376,22 +376,34 @@ async function requestLiveAI(promptText,signal){
  try{
   const controller=signal instanceof AbortController?signal:new AbortController();
   timeoutId=setTimeout(()=>controller.abort(),50000);
-  const url=GEMINI_ENDPOINT+'?key='+encodeURIComponent(GEMINI_API_KEY);
+  const url=GEMINI_ENDPOINT;
   const payload={"contents":[{"parts":[{"text":promptText}]}]};
-  let lastError=Error(GEMINI_ERROR_MESSAGE);
+  let lastError=new Error(GEMINI_ERROR_MESSAGE);
   for(const proxy of CORS_PROXIES){
-   let target=proxy?url+encodeURIComponent(url):url;
+   let target=proxy?proxy+encodeURIComponent(url):url;
    try{
-    const response=await fetch(target,{method:'POST',signal:controller.signal,headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-    if(!response.ok)throw new Error(GEMINI_ERROR_MESSAGE);
-    const contentType=(response.headers.get('content-type')||'');
-    const data=contentType.includes('application/json')?await response.json():JSON.parse(await response.text());
+    const response=await fetch(target,{method:'POST',signal:controller.signal,headers:{'Content-Type':'application/json','x-goog-api-key':GEMINI_API_KEY},body:JSON.stringify(payload)});
+    if(!response.ok){
+     let retryAfter=0;
+     try{retryAfter=parseInt(response.headers.get('retry-after')||'0',10)||0}catch(_h){}
+     if(response.status===429||response.status>=500){lastError=new Error('HTTP '+response.status);continue}
+     if(response.status===400||response.status===401||response.status===403)throw new Error(GEMINI_ERROR_MESSAGE);
+     lastError=new Error('HTTP '+response.status);continue;
+    }
+    let data=null;
+    try{
+     const contentType=(response.headers.get('content-type')||'');
+     data=contentType.includes('application/json')?await response.json():JSON.parse(await response.text());
+    }catch(_parseError){lastError=new Error('invalid response');continue}
     const reply=data?.candidates?.[0]?.content?.parts?.[0]?.text;
-    if(typeof reply!=='string'||!reply.trim())throw new Error(GEMINI_ERROR_MESSAGE);
+    if(typeof reply!=='string'||!reply.trim()){lastError=new Error('empty reply');continue}
     return reply.trim();
-   }catch(_proxyError){lastError=_proxyError}
+   }catch(_proxyError){
+    if(_proxyError&&_proxyError.name==='AbortError'){lastError=new Error('timeout');break}
+    lastError=_proxyError instanceof Error?_proxyError:new Error(GEMINI_ERROR_MESSAGE);
+   }
   }
-  throw lastError;
+  throw lastError&&lastError.message===GEMINI_ERROR_MESSAGE?lastError:new Error(GEMINI_ERROR_MESSAGE);
  }catch(_error){
   throw new Error(GEMINI_ERROR_MESSAGE);
  }finally{if(timeoutId!==undefined)clearTimeout(timeoutId)}
