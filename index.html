@@ -220,7 +220,7 @@ const optks=['آپشنک آنالیزوری گام به گام دروس ابتد
 const $=id=>document.getElementById(id);let state={group:null,mod:null,route:null,sub:null,op:null,level:null,optks:[],optksByLevel:{},image:null,audio:null,transcript:''},audioUrl=null;
 let clickCtx=null;function playSynthesizedSound(){try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;clickCtx=clickCtx||new AC();if(clickCtx.state==='suspended')clickCtx.resume();const o=clickCtx.createOscillator(),g=clickCtx.createGain(),t=clickCtx.currentTime;o.type='sine';o.frequency.setValueAtTime(740,t);o.frequency.exponentialRampToValueAtTime(520,t+.065);g.gain.setValueAtTime(.045,t);g.gain.exponentialRampToValueAtTime(.001,t+.085);o.connect(g);g.connect(clickCtx.destination);o.start(t);o.stop(t+.09)}catch(e){}}document.addEventListener('click',e=>{if(e.target.closest('button,summary,input[type=file]'))playSynthesizedSound()},true);document.addEventListener('change',e=>{if(e.target.matches('input[type=checkbox]'))playSynthesizedSound()},true);document.querySelectorAll('details>summary').forEach(summary=>summary.addEventListener('click',e=>{e.preventDefault();const d=summary.parentElement;d.open=!d.open}));
 function scrollTo(id){setTimeout(()=>$(id).scrollIntoView({behavior:'smooth',block:'start'}),80)}function show(id,on=true){$(id).classList.toggle('hidden',!on)}function badge(el,yes){el.classList.toggle('selected',yes);el.setAttribute('aria-pressed',yes?'true':'false');let b=el.querySelector('.badge');if(yes&&!b){b=document.createElement('span');b.className='badge';b.textContent='انتخاب شد';el.appendChild(b)}else if(!yes&&b)b.remove()}
-function status(msg,err=false){const text=String(msg);const unsafe=/(?:\bHTTP\s*\d{3}\b|invalid\s*token|\btoken\b|توکن|گپ\s*جی\s*پی\s*تی|gapgpt|gemini|کوگنیشن|\bapi\b|کلید|request\s*id|\b(?:401|403|5\d\d)\b)/i.test(text);$('status').textContent=unsafe?'پاسخ برخط در دسترس نیست؛ لطفاً اتصال اینترنت خود را بررسی کنید یا مجدداً تلاش نمایید.':text;$('status').classList.toggle('error',err||unsafe)}function outputTools(on){}function resetOutput(){show('result',false);$('result').textContent='';outputTools(false);$('stopSpeech').classList.add('hidden');window.speechSynthesis?.cancel()}
+function status(msg,err=false){const text=String(msg);$('status').textContent=text;$('status').classList.toggle('error',!!err)}function outputTools(on){}function resetOutput(){show('result',false);$('result').textContent='';outputTools(false);$('stopSpeech').classList.add('hidden');window.speechSynthesis?.cancel()}
 function updateTracker(){$('tGroup').textContent=state.group??'هنوز انتخاب نشده';$('tSub').textContent=state.route==='direct'?'بخش اول: پاسخ بدون آنالیز':(state.sub?(state.modalityName+' • '+state.sub):'هنوز انتخاب نشده');$('tOp').textContent=state.op??'هنوز انتخاب نشده';$('tLevel').textContent=state.level??'هنوز انتخاب نشده';for(let id of ['tGroup','tSub','tOp','tLevel'])$(id).classList.toggle('on',!$(id).textContent.includes('هنوز'))}
 function clearAfterGroup(){state.mod=null;state.route=null;state.sub=null;state.op=null;state.level=null;state.optks=[];state.optksByLevel={};state.image=null;state.audio=null;state.transcript='';show('routePanel',false);show('subPanel',false);show('opsPanel',false);show('levelsPanel',false);$('sourceArea').innerHTML='';resetOutput();updateTracker()}
 /* ==== منطق کارت انتخاب کن ==== */
@@ -282,7 +282,7 @@ async function runDirectAnswer(mode){
  const prompt=generateDirectPrompt(),requestId=(window.__aiRequestId||0)+1;window.__aiRequestId=requestId;
  $('result').textContent='در حال آماده‌سازی پاسخ مستقیم…';status('بخش اول: در حال دریافت پاسخ مستقیم بدون آنالیز…');
  try{const answer=await requestLiveAI(prompt);if(requestId!==window.__aiRequestId)return;$('result').textContent=answer;status('پاسخ مستقیم آماده شد؛ مراحل آنالیز اجرا نشد.');if(mode==='audio')speak(answer)}
- catch(e){if(requestId!==window.__aiRequestId)return;$('result').textContent='پاسخ برخط در دسترس نیست؛ لطفاً اتصال اینترنت خود را بررسی کنید یا مجدداً تلاش نمایید.';status('پاسخ برخط در دسترس نیست؛ لطفاً اتصال اینترنت خود را بررسی کنید یا مجدداً تلاش نمایید.',true)}
+ catch(e){if(requestId!==window.__aiRequestId)return;const reason='خطای ارتباط یا فیلترشکن: '+((e&&e.message)?e.message:e);$('result').textContent=reason;status(reason,true)}
 }
 function buildSource(){let a=$('sourceArea');a.innerHTML='<div class="sourcebox" id="sourceBox"></div>';let box=$('sourceBox');if(state.mod==='photo'){box.innerHTML='<label for="imageFile">انتخاب عکس از گالری</label><input id="imageFile" type="file" accept="image/*" aria-label="انتخاب عکس از گالری"><div id="mediaPreview"></div><button class="secondary hidden" id="removeMedia" type="button">آپشن حذف عکس</button>'; $('imageFile').onchange=e=>{let f=e.target.files[0];if(!f)return;if(!f.type.startsWith('image/')){status('لطفاً یک فایل تصویر انتخاب کنید.',true);return}let r=new FileReader();r.onload=()=>{state.image={name:f.name,data:r.result,type:f.type};$('mediaPreview').innerHTML=`<img class="preview" alt="پیش‌نمایش عکس انتخاب‌شده" src="${r.result}">`;show('removeMedia');status('عکس «'+f.name+'» بارگذاری شد.');startPreferredDirect()};r.readAsDataURL(f)};$('removeMedia').onclick=()=>{state.image=null;$('imageFile').value='';$('mediaPreview').innerHTML='';show('removeMedia',false);status('عکس حذف شد.')}}else if(state.mod==='audio'){box.innerHTML='<label for="audioFile">انتخاب فایل صوتی</label><input id="audioFile" type="file" accept="audio/*" aria-label="انتخاب فایل صوتی"><div id="mediaPreview"></div><button class="secondary hidden" id="removeMedia" type="button">آپشن حذف فایل صوتی</button><p class="note">برای تحلیل دقیق محتوای صوت، متن پیاده‌سازی‌شده را در کادر زیر وارد کنید. اگر مرورگر شما گفتار فارسی را پشتیبانی کند، می‌توانید از ضبط و پیاده‌سازی گفتار کمک بگیرید.</p><button class="secondary" id="micBtn" type="button">آپشن شروع ضبط / رونویسی با میکروفون</button><p class="toast" id="micInfo">رونویسی میکروفون وابسته به پشتیبانی مرورگر و مجوز کاربر است.</p><label for="transcript">متن رونویسی‌شده / متن کمکی (اختیاری)</label><textarea id="transcript" placeholder="در صورت نیاز متن را اینجا وارد یا اصلاح کنید"></textarea>'; $('audioFile').onchange=e=>{let f=e.target.files[0];if(!f)return;if(audioUrl)URL.revokeObjectURL(audioUrl);audioUrl=URL.createObjectURL(f);state.audio={name:f.name,type:f.type};$('mediaPreview').innerHTML=`<audio class="audio-player" controls aria-label="پخش پیش‌نمایش فایل صوتی" src="${audioUrl}"></audio>`;show('removeMedia');status('فایل صوتی «'+f.name+'» آمادهٔ پیش‌نمایش است؛ این فایل به‌عنوان متن رونویسی‌شده ارسال نمی‌شود.')};$('removeMedia').onclick=()=>{state.audio=null;if(audioUrl)URL.revokeObjectURL(audioUrl);audioUrl=null;$('audioFile').value='';$('mediaPreview').innerHTML='';show('removeMedia',false);status('فایل صوتی حذف شد.')};$('transcript').oninput=e=>{state.transcript=e.target.value;startPreferredDirect()};$('micBtn').onclick=startMic}else{box.innerHTML='<label for="typedText">متن سؤال، پاسخ یا محتوای مورد تحلیل</label><textarea id="typedText" placeholder="متن را اینجا تایپ یا جای‌گذاری کنید…"></textarea>'; $('typedText').oninput=e=>{state.transcript=e.target.value;startPreferredDirect()}}}
 function startMic(){let SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){$('micInfo').textContent='قابلیت تشخیص گفتار در این مرورگر فعال نیست. لطفاً متن را دستی وارد کنید یا فایل صوتی بارگذاری کنید.';return}let rec=new SR();rec.lang='fa-IR';rec.interimResults=false;rec.onstart=()=>{$('micInfo').textContent='در حال شنیدن… برای پایان، دکمهٔ توقف مرورگر را بزنید.'};rec.onresult=e=>{let t=e.results[0][0].transcript;state.transcript+= (state.transcript?'\n':'')+t;$('transcript').value=state.transcript;$('micInfo').textContent='رونویسی مرورگر تکمیل شد؛ متن را بازبینی کنید.'};rec.onerror=()=> $('micInfo').textContent='ضبط صدا در دسترس نیست؛ لطفاً مجوز میکروفون را بررسی کنید.';rec.onend=()=>{$('micInfo').textContent+=' ضبط پایان یافت.'};try{rec.start()}catch(e){$('micInfo').textContent='شروع میکروفون ممکن نشد؛ مجوز مرورگر را بررسی کنید.'}}
@@ -376,18 +376,18 @@ async function requestLiveAI(promptText,signal){
  try{
   const controller=signal instanceof AbortController?signal:new AbortController();
   timeoutId=setTimeout(()=>controller.abort(),50000);
-  const url=GEMINI_ENDPOINT;
+  const url=GEMINI_ENDPOINT+'?key='+encodeURIComponent(GEMINI_API_KEY);
   const payload={"contents":[{"parts":[{"text":promptText}]}]};
   let lastError=new Error(GEMINI_ERROR_MESSAGE);
   for(const proxy of CORS_PROXIES){
    let target=proxy?proxy+encodeURIComponent(url):url;
    try{
-    const response=await fetch(target,{method:'POST',signal:controller.signal,headers:{'Content-Type':'application/json','x-goog-api-key':GEMINI_API_KEY},body:JSON.stringify(payload)});
+    const response=await fetch(target,{method:'POST',signal:controller.signal,headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
     if(!response.ok){
      let retryAfter=0;
      try{retryAfter=parseInt(response.headers.get('retry-after')||'0',10)||0}catch(_h){}
      if(response.status===429||response.status>=500){lastError=new Error('HTTP '+response.status);continue}
-     if(response.status===400||response.status===401||response.status===403)throw new Error(GEMINI_ERROR_MESSAGE);
+     if(response.status===400||response.status===401||response.status===403)throw new Error('HTTP '+response.status);
      lastError=new Error('HTTP '+response.status);continue;
     }
     let data=null;
@@ -400,12 +400,12 @@ async function requestLiveAI(promptText,signal){
     return reply.trim();
    }catch(_proxyError){
     if(_proxyError&&_proxyError.name==='AbortError'){lastError=new Error('timeout');break}
-    lastError=_proxyError instanceof Error?_proxyError:new Error(GEMINI_ERROR_MESSAGE);
+    lastError=_proxyError instanceof Error?_proxyError:new Error(String(_proxyError||'network error'));
    }
   }
-  throw lastError&&lastError.message===GEMINI_ERROR_MESSAGE?lastError:new Error(GEMINI_ERROR_MESSAGE);
+  throw lastError;
  }catch(_error){
-  throw new Error(GEMINI_ERROR_MESSAGE);
+  throw _error instanceof Error?_error:new Error(String(_error));
  }finally{if(timeoutId!==undefined)clearTimeout(timeoutId)}
 }
 // State history and a universal one-step back action for the workflow.
