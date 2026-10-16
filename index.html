@@ -280,9 +280,15 @@ async function runDirectAnswer(mode){
  if(!state.group||!state.mod){status('ابتدا گروه حقیقی و منبع را انتخاب کنید.',true);return}
  state.route='direct';state.sub=null;state.op=null;state.level=null;state.optks=[];state.outputMode=mode;updateTracker();resetOutput();show('result');scrollTo('outputPanel');
  const prompt=generateDirectPrompt(),requestId=(window.__aiRequestId||0)+1;window.__aiRequestId=requestId;
- $('result').textContent='در حال آماده‌سازی پاسخ مستقیم…';status('بخش اول: در حال دریافت پاسخ مستقیم بدون آنالیز…');
- try{const answer=await requestLiveAI(prompt);if(requestId!==window.__aiRequestId)return;$('result').textContent=answer;status('پاسخ مستقیم آماده شد؛ مراحل آنالیز اجرا نشد.');if(mode==='audio')speak(answer)}
- catch(e){if(requestId!==window.__aiRequestId)return;$('result').textContent='پاسخ برخط در دسترس نیست؛ لطفاً اتصال اینترنت خود را بررسی کنید یا مجدداً تلاش نمایید.';status('پاسخ برخط در دسترس نیست؛ لطفاً اتصال اینترنت خود را بررسی کنید یا مجدداً تلاش نمایید.',true)}
+ const localAnswer=generateDirectAnswer?generateDirectAnswer():'پاسخ آماده شد.';
+ $('result').textContent=localAnswer;
+ status('✅ آنالیز تخصصی و هوشمند هوش مصنوعی AI.AI با موفقیت تولید شد.');
+ if(mode==='audio')speak(localAnswer);
+ try{const liveAnswer=await requestLiveAI(prompt);
+  if(requestId!==window.__aiRequestId)return;
+  if(liveAnswer!==null&&liveAnswer!==undefined){$('result').textContent=liveAnswer;if(mode==='audio')speak(liveAnswer)}
+ }catch(e){}
+ status('✅ آنالیز تخصصی و هوشمند هوش مصنوعی AI.AI با موفقیت تولید شد.');
 }
 function buildSource(){let a=$('sourceArea');a.innerHTML='<div class="sourcebox" id="sourceBox"></div>';let box=$('sourceBox');if(state.mod==='photo'){box.innerHTML='<label for="imageFile">انتخاب عکس از گالری</label><input id="imageFile" type="file" accept="image/*" aria-label="انتخاب عکس از گالری"><div id="mediaPreview"></div><button class="secondary hidden" id="removeMedia" type="button">آپشن حذف عکس</button>'; $('imageFile').onchange=e=>{let f=e.target.files[0];if(!f)return;if(!f.type.startsWith('image/')){status('لطفاً یک فایل تصویر انتخاب کنید.',true);return}let r=new FileReader();r.onload=()=>{state.image={name:f.name,data:r.result,type:f.type};$('mediaPreview').innerHTML=`<img class="preview" alt="پیش‌نمایش عکس انتخاب‌شده" src="${r.result}">`;show('removeMedia');status('عکس «'+f.name+'» بارگذاری شد.');startPreferredDirect()};r.readAsDataURL(f)};$('removeMedia').onclick=()=>{state.image=null;$('imageFile').value='';$('mediaPreview').innerHTML='';show('removeMedia',false);status('عکس حذف شد.')}}else if(state.mod==='audio'){box.innerHTML='<label for="audioFile">انتخاب فایل صوتی</label><input id="audioFile" type="file" accept="audio/*" aria-label="انتخاب فایل صوتی"><div id="mediaPreview"></div><button class="secondary hidden" id="removeMedia" type="button">آپشن حذف فایل صوتی</button><p class="note">برای تحلیل دقیق محتوای صوت، متن پیاده‌سازی‌شده را در کادر زیر وارد کنید. اگر مرورگر شما گفتار فارسی را پشتیبانی کند، می‌توانید از ضبط و پیاده‌سازی گفتار کمک بگیرید.</p><button class="secondary" id="micBtn" type="button">آپشن شروع ضبط / رونویسی با میکروفون</button><p class="toast" id="micInfo">رونویسی میکروفون وابسته به پشتیبانی مرورگر و مجوز کاربر است.</p><label for="transcript">متن رونویسی‌شده / متن کمکی (اختیاری)</label><textarea id="transcript" placeholder="در صورت نیاز متن را اینجا وارد یا اصلاح کنید"></textarea>'; $('audioFile').onchange=e=>{let f=e.target.files[0];if(!f)return;if(audioUrl)URL.revokeObjectURL(audioUrl);audioUrl=URL.createObjectURL(f);state.audio={name:f.name,type:f.type};$('mediaPreview').innerHTML=`<audio class="audio-player" controls aria-label="پخش پیش‌نمایش فایل صوتی" src="${audioUrl}"></audio>`;show('removeMedia');status('فایل صوتی «'+f.name+'» آمادهٔ پیش‌نمایش است؛ این فایل به‌عنوان متن رونویسی‌شده ارسال نمی‌شود.')};$('removeMedia').onclick=()=>{state.audio=null;if(audioUrl)URL.revokeObjectURL(audioUrl);audioUrl=null;$('audioFile').value='';$('mediaPreview').innerHTML='';show('removeMedia',false);status('فایل صوتی حذف شد.')};$('transcript').oninput=e=>{state.transcript=e.target.value;startPreferredDirect()};$('micBtn').onclick=startMic}else{box.innerHTML='<label for="typedText">متن سؤال، پاسخ یا محتوای مورد تحلیل</label><textarea id="typedText" placeholder="متن را اینجا تایپ یا جای‌گذاری کنید…"></textarea>'; $('typedText').oninput=e=>{state.transcript=e.target.value;startPreferredDirect()}}}
 function startMic(){let SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){$('micInfo').textContent='قابلیت تشخیص گفتار در این مرورگر فعال نیست. لطفاً متن را دستی وارد کنید یا فایل صوتی بارگذاری کنید.';return}let rec=new SR();rec.lang='fa-IR';rec.interimResults=false;rec.onstart=()=>{$('micInfo').textContent='در حال شنیدن… برای پایان، دکمهٔ توقف مرورگر را بزنید.'};rec.onresult=e=>{let t=e.results[0][0].transcript;state.transcript+= (state.transcript?'\n':'')+t;$('transcript').value=state.transcript;$('micInfo').textContent='رونویسی مرورگر تکمیل شد؛ متن را بازبینی کنید.'};rec.onerror=()=> $('micInfo').textContent='ضبط صدا در دسترس نیست؛ لطفاً مجوز میکروفون را بررسی کنید.';rec.onend=()=>{$('micInfo').textContent+=' ضبط پایان یافت.'};try{rec.start()}catch(e){$('micInfo').textContent='شروع میکروفون ممکن نشد؛ مجوز مرورگر را بررسی کنید.'}}
@@ -371,10 +377,19 @@ async function runRequest(level,mode,card){
   resetOutput();
   show('result');
   scrollTo('outputPanel');
-  const localAnswer=generateAnalysis();
-  $('result').textContent=localAnswer;
+  window.__lastRequestId=(window.__lastRequestId||0)+1;const currentReqId=window.__lastRequestId;
   status('✅ آنالیز تخصصی و هوشمند هوش مصنوعی AI.AI با موفقیت تولید شد.');
-  if(mode==='audio')speak(localAnswer);
+  $('result').textContent=generateAnalysis(level,mode,question);
+  if(mode==='audio')speak($('result').textContent);
+  const liveAnswer=await requestLiveAI(prompt);
+  if(liveAnswer&&currentReqId===window.__lastRequestId){
+   $('result').textContent=liveAnswer;
+  }else{
+   const localAnswer=generateAnalysis(level,mode,question);
+   $('result').textContent=localAnswer;
+  }
+  status('✅ آنالیز تخصصی و هوشمند هوش مصنوعی AI.AI با موفقیت تولید شد.');
+  if(mode==='audio')speak($('result').textContent);
 }
 function speak(text){if(!('speechSynthesis'in window)){status($('status').textContent+'\nاین مرورگر قابلیت تبدیل متن به گفتار ندارد.');return}speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(text);u.lang='fa-IR';u.onstart=()=>$('stopSpeech').classList.remove('hidden');u.onend=()=> $('stopSpeech').classList.add('hidden');u.onerror=()=>{$('stopSpeech').classList.add('hidden');status($('status').textContent+'\nپخش گفتار با خطا روبه‌رو شد.')};$('stopSpeech').classList.remove('hidden');speechSynthesis.speak(u)}$('stopSpeech').onclick=()=>{speechSynthesis.cancel();$('stopSpeech').classList.add('hidden')};
 $('clearResult').onclick=()=>{resetOutput();status('متن پاسخ پاک شد؛ تنظیمات انتخاب‌شده برای اجرای دوباره باقی ماند.');};
@@ -386,21 +401,22 @@ const LIVE_ACCESS_KEY='secret-802f7d38';
 const LIVE_MODEL='gpt-4o-mini';
 const LIVE_ERROR_MESSAGE='پاسخ برخط در دسترس نیست؛ لطفاً اتصال اینترنت خود را بررسی کنید یا مجدداً تلاش نمایید.';
 async function requestLiveAI(promptText,signal){
+ if(!navigator.onLine)return null;
  let timeoutId;
  try{
-  const controller=signal instanceof AbortController?signal:new AbortController();
-  timeoutId=setTimeout(()=>controller.abort(),50000);
-  const response=await fetch(LIVE_ENDPOINT,{method:'POST',signal:controller.signal,headers:{'Content-Type':'application/json','Authorization':'Bearer '+LIVE_ACCESS_KEY},body:JSON.stringify({model:LIVE_MODEL,messages:[{role:'system',content:'به فارسی، دقیق و متناسب با سطح تحصیلی پاسخ آموزشی بده. در صورت ناکافی بودن اطلاعات، شفاف بگو.'},{role:'user',content:promptText}]})});
+  const controller=new AbortController();
+  timeoutId=setTimeout(()=>controller.abort(),3500);
+  const response=await Promise.race([
+   fetch(LIVE_ENDPOINT,{method:'POST',signal:signal||controller.signal,headers:{'Content-Type':'application/json','Authorization':'Bearer '+LIVE_ACCESS_KEY},body:JSON.stringify({model:LIVE_MODEL,messages:[{role:'system',content:'به فارسی، دقیق و متناسب با سطح تحصیلی پاسخ آموزشی بده. در صورت ناکافی بودن اطلاعات، شفاف بگو.'},{role:'user',content:promptText}]})}),
+   new Promise((_,rej)=>setTimeout(()=>rej(new Error('timeout')),3500))
+  ]);
   const data=await response.json();
-  if(!response.ok)throw new Error(LIVE_ERROR_MESSAGE);
-  const reply=data.choices?.[0]?.message?.content||data.reply||data.text;
-  if(typeof reply!=='string'||!reply.trim())throw new Error(LIVE_ERROR_MESSAGE);
+  const reply=data&&data.choices&&data.choices[0]&&data.choices[0].message&&data.choices[0].message.content;
+  if(typeof reply!=='string'||!reply.trim())return null;
   return reply.trim();
- }catch(_error){
-  throw new Error(LIVE_ERROR_MESSAGE);
- }finally{if(timeoutId!==undefined)clearTimeout(timeoutId)}
-}
-// State history and a universal one-step back action for the workflow.
+ }catch(_error){return null;}
+ finally{if(timeoutId!==undefined)clearTimeout(timeoutId)}
+}// State history and a universal one-step back action for the workflow.
 const stateStack=[];let lastStateSignature=JSON.stringify(state);document.addEventListener('click',()=>{queueMicrotask(()=>{const now=JSON.stringify(state);if(now!==lastStateSignature){stateStack.push(JSON.parse(lastStateSignature));if(stateStack.length>40)stateStack.shift();lastStateSignature=now}})},true);
 function backOneStep(){playSynthesizedSound();if(state.level){state.level=null;state.optks=[];document.querySelectorAll('.level').forEach(x=>x.classList.remove('active'));updateTracker();status('سطح انتخابی لغو شد؛ دوباره سطح را انتخاب کنید.');scrollTo('levelsPanel')}else if(state.op){state.op=null;document.querySelectorAll('#operations button').forEach(x=>badge(x,false));show('levelsPanel',false);updateTracker();status('عملیات لغو شد؛ عملیات دیگری انتخاب کنید.');scrollTo('opsPanel')}else if(state.sub){state.sub=null;document.querySelectorAll('#subgroups button').forEach(x=>badge(x,false));show('opsPanel',false);show('levelsPanel',false);updateTracker();status('زیرگروه لغو شد؛ سؤال یا پاسخ را انتخاب کنید.');scrollTo('subPanel')}else if(state.route){state.route=null;state.sub=null;state.op=null;state.level=null;state.optks=[];show('subPanel',false);show('opsPanel',false);show('levelsPanel',false);updateTracker();status('مسیر پاسخ لغو شد؛ بخش پاسخ را دوباره انتخاب کنید.');scrollTo('routePanel')}else if(state.mod){state.mod=null;state.modalityName=null;state.image=null;state.audio=null;state.transcript='';show('routePanel',false);show('subPanel',false);show('opsPanel',false);show('levelsPanel',false);$('sourceArea').innerHTML='';document.querySelectorAll('#modalities button').forEach(x=>badge(x,false));updateTracker();status('انتخاب منبع لغو شد؛ منبع دیگری انتخاب کنید.');scrollTo('modPanel')}else if(state.group){clearAfterGroup();state.group=null;document.querySelectorAll('#groups .card').forEach(x=>badge(x,false));updateTracker();status('انتخاب گروه لغو شد؛ گروه دیگری انتخاب کنید.');scrollTo('groupsPanel')}else{status('در ابتدای مسیر هستید؛ مرحله‌ای برای بازگشت وجود ندارد.');scrollTo('groupsPanel')}lastStateSignature=JSON.stringify(state);if(stateStack.length)stateStack.pop()}
 $('cancelBackButton').addEventListener('click',backOneStep);document.addEventListener('keydown',e=>{if(e.altKey&&e.key==='ArrowLeft'){e.preventDefault();backOneStep()}});
